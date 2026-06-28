@@ -1,3 +1,14 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Generated
+graphify-out/
+
+# Claude
+.claude/
+
 # Logs
 logs
 *.log
