@@ -15,18 +15,23 @@ const menuOpen = ref(false)
           <defs>
             <linearGradient id="gKeyHeader" x1="20%" y1="0%" x2="80%" y2="100%">
               <stop offset="0%"   stop-color="oklch(0.80 0.10 90)"/>
-              <stop offset="40%"  stop-color="oklch(0.62 0.09 80)"/>
+              <stop offset="38%"  stop-color="oklch(0.62 0.09 80)"/>
               <stop offset="100%" stop-color="oklch(0.46 0.08 68)"/>
             </linearGradient>
           </defs>
-          <circle cx="35" cy="38" r="25" stroke="url(#gKeyHeader)" stroke-width="4" fill="none"/>
-          <circle cx="35" cy="38" r="13" stroke="url(#gKeyHeader)" stroke-width="2.5" fill="none"/>
-          <circle cx="35" cy="38" r="3.5" fill="url(#gKeyHeader)"/>
-          <rect x="28" y="63" width="14" height="6"  rx="2.5" fill="url(#gKeyHeader)"/>
-          <rect x="32" y="69" width="6"  height="94" rx="2.5" fill="url(#gKeyHeader)"/>
-          <rect x="38" y="104" width="20" height="12" rx="2.5" fill="url(#gKeyHeader)"/>
-          <rect x="38" y="130" width="13" height="9"  rx="2"   fill="url(#gKeyHeader)"/>
-          <path d="M 35 200 C 16 185 14 164 24 159 C 29 155 35 160 35 167 C 35 160 41 155 46 159 C 56 164 54 185 35 200 Z" fill="url(#gKeyHeader)"/>
+          <ellipse cx="35" cy="52" rx="28" ry="34" stroke="url(#gKeyHeader)" stroke-width="3.5" fill="none"/>
+          <ellipse cx="35" cy="52" rx="16" ry="22" stroke="url(#gKeyHeader)" stroke-width="2.2" fill="none"/>
+          <path d="M 28 20 Q 31 12 35 11 Q 39 12 42 20" stroke="url(#gKeyHeader)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M 35 11 L 35 6"   stroke="url(#gKeyHeader)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M 30 7 Q 35 2 40 7" stroke="url(#gKeyHeader)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M 8 52 C 1 44 3 30 13 27 C 18 25 22 29 18 34 C 14 38 10 37 10 34"    stroke="url(#gKeyHeader)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M 62 52 C 69 44 67 30 57 27 C 52 25 48 29 52 34 C 56 38 60 37 60 34" stroke="url(#gKeyHeader)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M 26 87 C 18 81 22 72 29 75 C 32 76 34 82 35 85 M 44 87 C 52 81 48 72 41 75 C 38 76 36 82 35 85 M 35 85 L 35 78 M 31 79 Q 35 73 39 79" stroke="url(#gKeyHeader)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="35" cy="90.5" rx="10" ry="2.8" fill="url(#gKeyHeader)"/>
+          <ellipse cx="35" cy="96"   rx="9"  ry="2.3" fill="url(#gKeyHeader)"/>
+          <ellipse cx="35" cy="101"  rx="8"  ry="2"   fill="url(#gKeyHeader)"/>
+          <rect x="31" y="104" width="8" height="56" rx="3" fill="url(#gKeyHeader)"/>
+          <path d="M 35 199 C 16 184 14 163 24 158 C 29 154 35 159 35 166 C 35 159 41 154 46 158 C 56 163 54 184 35 199 Z" fill="url(#gKeyHeader)"/>
         </svg>
         <span class="logo-name">le seuil</span>
       </a>
