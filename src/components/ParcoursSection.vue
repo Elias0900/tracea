@@ -77,7 +77,7 @@ const steps = [
 
 .overline {
   font:
-    500 11px/1 'Jost',
+    500 11px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -87,7 +87,7 @@ const steps = [
 .title {
   margin: 20px 0 0;
   font:
-    500 38px/1.15 'Cormorant Garamond',
+    500 38px/1.15 'Spectral',
     serif;
   color: var(--text-primary);
 }
@@ -116,7 +116,7 @@ const steps = [
   align-items: center;
   justify-content: center;
   font:
-    500 15px/1 'Jost',
+    500 15px/1 'Work Sans',
     sans-serif;
   color: var(--accent);
   background: var(--card-bg);
@@ -147,7 +147,7 @@ const steps = [
 }
 .step-title {
   font:
-    500 22px/1.2 'Cormorant Garamond',
+    500 22px/1.2 'Spectral',
     serif;
   color: var(--text-primary);
 }
@@ -156,7 +156,7 @@ const steps = [
 }
 .step-badge {
   font:
-    600 9px/1 'Jost',
+    600 9px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -168,8 +168,24 @@ const steps = [
 .step-text {
   margin: 8px 0 0;
   font:
-    300 14.5px/1.6 'Jost',
+    300 14.5px/1.6 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .parcours { padding: 64px 20px; }
+  .title { font-size: 28px; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .parcours { padding: 48px 16px; }
+  .title { font-size: 24px; }
+  .step-title { font-size: 18px; }
 }
 </style>

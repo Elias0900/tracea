@@ -9,12 +9,12 @@ import DemandForm from '@/components/DemandForm.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import { useTheme } from '@/composables/useTheme'
 
-useTheme()
+const { dark, toggleTheme } = useTheme()
 </script>
 
 <template>
   <div>
-    <AppHeader />
+    <AppHeader :dark="dark" @toggle-theme="toggleTheme" />
     <HeroSection />
     <PrincipeSection />
     <ParcoursSection />

@@ -63,7 +63,7 @@ const cards = [
 }
 .overline {
   font:
-    500 11px/1 'Jost',
+    500 11px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -73,7 +73,7 @@ const cards = [
 .title {
   margin: 20px 0 0;
   font:
-    500 36px/1.18 'Cormorant Garamond',
+    500 36px/1.18 'Spectral',
     serif;
   color: var(--text-primary);
 }
@@ -91,15 +91,30 @@ const cards = [
 .card-title {
   margin: 20px 0 0;
   font:
-    500 27px/1.2 'Cormorant Garamond',
+    500 27px/1.2 'Spectral',
     serif;
   color: var(--text-primary);
 }
 .card-body {
   margin: 12px 0 0;
   font:
-    300 15.5px/1.65 'Jost',
+    300 15.5px/1.65 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .pourqui { padding: 64px 20px; }
+  .title { font-size: 28px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 24px; }
+  .card-title { font-size: 22px; }
+}
+
+@media (max-width: 480px) {
+  .pourqui { padding: 48px 16px; }
+  .title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 20px; }
 }
 </style>

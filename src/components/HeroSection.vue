@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArchAnimation from './ArchAnimation.vue'
+import KeyLogoAnimated from '@/components/KeyLogoAnimated.vue'
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import ArchAnimation from './ArchAnimation.vue'
     <div class="hero-inner">
       <!-- Visual LEFT -->
       <div class="hero-visual">
-        <ArchAnimation />
+        <KeyLogoAnimated />
       </div>
 
       <!-- Copy RIGHT -->
@@ -19,8 +19,8 @@ import ArchAnimation from './ArchAnimation.vue'
           porte. Nous créons le cadre de confiance et la médiation qui rendent ce retour possible.
         </p>
         <div class="hero-actions">
-          <a href="#demande" class="btn-primary">Ouvrir cette porte →</a>
-          <a href="#parcours" class="btn-ghost">Comment ça marche</a>
+          <a class="btn-primary">Ouvrir cette porte →</a>
+          <a class="btn-ghost">Comment ça marche</a>
         </div>
       </div>
     </div>
@@ -41,13 +41,15 @@ import ArchAnimation from './ArchAnimation.vue'
   align-items: center;
 }
 .hero-visual {
-  position: relative;
-  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
 }
 
 .overline {
   font:
-    500 12px/1 'Jost',
+    500 12px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -57,7 +59,7 @@ import ArchAnimation from './ArchAnimation.vue'
 .headline {
   margin: 22px 0 0;
   font:
-    500 52px/1.08 'Cormorant Garamond',
+    500 52px/1.08 'Spectral',
     serif;
   color: var(--text-primary);
   letter-spacing: -0.01em;
@@ -65,7 +67,7 @@ import ArchAnimation from './ArchAnimation.vue'
 .body-text {
   margin: 24px 0 0;
   font:
-    300 17px/1.65 'Jost',
+    300 17px/1.65 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
   max-width: 480px;
@@ -78,10 +80,10 @@ import ArchAnimation from './ArchAnimation.vue'
 .btn-primary {
   padding: 15px 28px;
   background: var(--accent);
-  border: 1.5px solid var(--accent);
+  border: 2px solid var(--accent);
   color: #fff;
   font:
-    500 15px/1 'Jost',
+    500 15px/1 'Work Sans',
     sans-serif;
   border-radius: 3px;
   text-decoration: none;
@@ -89,6 +91,7 @@ import ArchAnimation from './ArchAnimation.vue'
     background 0.6s ease,
     border-color 0.6s ease,
     color 0.6s ease;
+  cursor: pointer;
 }
 .btn-primary:hover {
   background: transparent;
@@ -96,11 +99,12 @@ import ArchAnimation from './ArchAnimation.vue'
   color: var(--accent);
 }
 .btn-ghost {
+  cursor: pointer;
   padding: 15px 28px;
-  border: 1.5px solid var(--border);
+  border: 2px solid var(--border);
   color: var(--text-secondary);
   font:
-    500 15px/1 'Jost',
+    500 15px/1 'Work Sans',
     sans-serif;
   border-radius: 3px;
   text-decoration: none;
@@ -111,5 +115,30 @@ import ArchAnimation from './ArchAnimation.vue'
 .btn-ghost:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .hero-inner { gap: 40px; }
+  .headline { font-size: 42px; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 20px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 48px 0 56px;
+    gap: 36px;
+  }
+  .hero-visual { min-height: 280px; }
+  .headline { font-size: 34px; }
+  .body-text { font-size: 15px; max-width: 100%; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-ghost { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 0 16px; }
+  .headline { font-size: 28px; }
+  .hero-actions { gap: 10px; }
 }
 </style>

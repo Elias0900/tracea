@@ -194,7 +194,7 @@ function restart() {
 }
 .overline {
   font:
-    500 11px/1 'Jost',
+    500 11px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -204,7 +204,7 @@ function restart() {
 .title {
   margin: 20px 0 0;
   font:
-    500 36px/1.18 'Cormorant Garamond',
+    500 36px/1.18 'Spectral',
     serif;
   color: var(--text-primary);
 }
@@ -226,7 +226,7 @@ function restart() {
 }
 .step-label {
   font:
-    500 11px/1 'Jost',
+    500 11px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -234,7 +234,7 @@ function restart() {
 }
 .no-commitment {
   font:
-    300 11.5px/1 'Jost',
+    300 11.5px/1 'Work Sans',
     sans-serif;
   color: var(--text-tertiary);
 }
@@ -257,14 +257,14 @@ function restart() {
 .step-title {
   margin: 0;
   font:
-    500 24px/1.3 'Cormorant Garamond',
+    500 24px/1.3 'Spectral',
     serif;
   color: var(--text-primary);
 }
 .step-hint {
   margin: 7px 0 0;
   font:
-    300 14px/1.5 'Jost',
+    300 14px/1.5 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
 }
@@ -299,7 +299,7 @@ function restart() {
 .choice strong {
   display: block;
   font:
-    500 16px/1.3 'Jost',
+    500 16px/1.3 'Work Sans',
     sans-serif;
   color: var(--text-primary);
 }
@@ -307,7 +307,7 @@ function restart() {
   display: block;
   margin-top: 3px;
   font:
-    300 13.5px/1.4 'Jost',
+    300 13.5px/1.4 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
 }
@@ -327,7 +327,7 @@ function restart() {
   display: block;
   margin-top: 16px;
   font:
-    500 11px/1 'Jost',
+    500 11px/1 'Work Sans',
     sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -348,7 +348,7 @@ function restart() {
   border: 1px solid var(--border);
   border-radius: 6px;
   font:
-    300 15px 'Jost',
+    300 15px 'Work Sans',
     sans-serif;
   color: var(--text-primary);
   background: var(--input-bg);
@@ -368,7 +368,7 @@ function restart() {
   border: 1px solid var(--border);
   border-radius: 6px;
   font:
-    300 15px/1.55 'Jost',
+    300 15px/1.55 'Work Sans',
     sans-serif;
   color: var(--text-primary);
   background: var(--input-bg);
@@ -391,7 +391,7 @@ function restart() {
   border: none;
   cursor: pointer;
   font:
-    500 14px/1 'Jost',
+    500 14px/1 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
   transition: color 0.2s;
@@ -406,7 +406,7 @@ function restart() {
   border: none;
   border-radius: 4px;
   font:
-    500 15px/1 'Jost',
+    500 15px/1 'Work Sans',
     sans-serif;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -429,7 +429,7 @@ function restart() {
 .submitted-title {
   margin: 22px 0 0;
   font:
-    500 28px/1.25 'Cormorant Garamond',
+    500 28px/1.25 'Spectral',
     serif;
   color: var(--text-primary);
 }
@@ -437,7 +437,7 @@ function restart() {
   margin: 12px auto 0;
   max-width: 400px;
   font:
-    300 15px/1.65 'Jost',
+    300 15px/1.65 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
 }
@@ -448,9 +448,17 @@ function restart() {
   border-bottom: 1.5px solid var(--border);
   cursor: pointer;
   font:
-    500 14px/1 'Jost',
+    500 14px/1 'Work Sans',
     sans-serif;
   color: var(--accent);
   padding-bottom: 3px;
+}
+
+@media (max-width: 768px) {
+  .demande { padding: 64px 16px; }
+  .title { font-size: 26px; }
+  .form-body { padding: 20px 18px; }
+  .form-progress { padding: 18px 18px 0; }
+  .nav-next { padding: 12px 18px; font-size: 14px; }
 }
 </style>

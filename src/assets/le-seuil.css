@@ -1,45 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap');
+/* ═══════════════════════════════════════════════════════
+   Thème "Revoir" — chaleureux · optimiste
+   Remplace le-seuil.css dans main.js
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Work+Sans:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap');
 
 :root {
-  --accent: oklch(0.617 0.128 344.733);
-  --bg: oklch(0.12 0.016 238);
-  --section-bg: oklch(0.16 0.016 238);
-  --card-bg: oklch(0.18 0.016 238);
-  --border: oklch(0.27 0.016 238);
-  --text-primary: oklch(0.94 0.006 230);
-  --text-secondary: oklch(0.68 0.013 232);
-  --text-tertiary: oklch(0.48 0.010 232);
-  --logo-stroke: oklch(0.86 0.007 230);
-  --logo-text: oklch(0.94 0.006 230);
-  --quote-color: oklch(0.60 0.055 235);
-  --header-bg: oklch(0.12 0.016 238 / .88);
-  --toggle-bg: oklch(0.18 0.016 238);
-  --input-bg: oklch(0.15 0.016 238);
-  --footer-bg: oklch(0.09 0.016 238);
-  --footer-text: oklch(0.90 0.007 230);
-  --footer-sub: oklch(0.56 0.025 232);
-  --footer-logo: oklch(0.84 0.007 230);
-  --accent-shadow: oklch(0.44 0.07 235 / .40);
-  --accent-text: oklch(0.75 0.06 235);
-  --form-shadow: 0 18px 50px oklch(0.09 0.02 238 / .5);
-  --arch-bg: oklch(0.075 0.016 232);
-  --sel-bg: oklch(0.20 0.018 238);
+  --accent: oklch(0.48 0.09 76);
+  --bg: oklch(0.82 0.016 82);
+  --section-bg: oklch(0.77 0.018 80);
+  --card-bg: oklch(0.85 0.014 82);
+  --border: oklch(0.68 0.020 78);
+  --text-primary: oklch(0.18 0.022 70);
+  --text-secondary: oklch(0.32 0.018 72);
+  --text-tertiary: oklch(0.46 0.012 74);
+  --logo-stroke: oklch(0.30 0.022 72);
+  --logo-text: oklch(0.18 0.022 70);
+  --quote-color: oklch(0.42 0.075 74);
+  --header-bg: oklch(0.82 0.016 82 / .93);
+  --toggle-bg: oklch(0.77 0.018 80);
+  --input-bg: oklch(0.85 0.014 82);
+  --footer-bg: oklch(0.20 0.018 72);
+  --footer-text: oklch(0.92 0.006 82);
+  --footer-sub: oklch(0.60 0.010 78);
+  --footer-logo: oklch(0.80 0.010 80);
+  --accent-shadow: oklch(0.48 0.09 76 / .20);
+  --accent-text: oklch(0.40 0.08 74);
+  --form-shadow: 0 18px 50px oklch(0.48 0.06 76 / .15);
+  --arch-bg: oklch(0.75 0.018 80);
+  --sel-bg: oklch(0.72 0.020 78);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
-body {
-  margin: 0;
-  font-family: 'Jost', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  background: var(--bg, #fff);
-  color: var(--text-primary, oklch(0.20 0.020 235));
-  transition: background .35s, color .35s;
+:root {
+  body {
+    margin: 0;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg, #fff);
+    color: var(--text-primary, oklch(0.27 0.020 80));
+    transition: background .35s, color .35s;
+  }
 }
 
-::selection { background: oklch(0.68 0.05 235 / .35); }
+::selection { background: oklch(0.66 0.09 85 / .30); }
+
+/* ── Keyframes animation ────────────────────────────── */
 
 @keyframes archDraw {
   0%   { stroke-dashoffset: 260; opacity: 0; }
@@ -58,8 +67,8 @@ body {
 }
 
 @keyframes glowBreath {
-  0%, 100% { opacity: .52; }
-  50%       { opacity: .86; }
+  0%, 100% { opacity: .50; }
+  50%       { opacity: .88; }
 }
 
 @keyframes mote {

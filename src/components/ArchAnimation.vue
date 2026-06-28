@@ -26,11 +26,11 @@ function replay() {
     >
       <defs>
         <radialGradient id="arch-grad" cx="50%" cy="28%" r="68%">
-          <stop offset="0%" stop-color="#fff9ee" stop-opacity=".98" />
-          <stop offset="22%" stop-color="#fcc26a" stop-opacity=".88" />
-          <stop offset="48%" stop-color="#e07428" stop-opacity=".60" />
-          <stop offset="75%" stop-color="#c04418" stop-opacity=".28" />
-          <stop offset="100%" stop-color="#7c1808" stop-opacity="0" />
+          <stop offset="0%" stop-color="#fef3dc" stop-opacity=".90" />
+          <stop offset="25%" stop-color="#e8b870" stop-opacity=".70" />
+          <stop offset="55%" stop-color="#c48840" stop-opacity=".40" />
+          <stop offset="80%" stop-color="#9a6030" stop-opacity=".15" />
+          <stop offset="100%" stop-color="#7a4020" stop-opacity="0" />
         </radialGradient>
         <clipPath id="arch-clip">
           <path d="M 14 112 L 14 44 A 36 36 0 0 1 86 44 L 86 112 Z" />
@@ -57,7 +57,7 @@ function replay() {
       <!-- Arch stroke -->
       <path
         d="M 14 112 L 14 44 A 36 36 0 0 1 86 44 L 86 112"
-        stroke="oklch(0.88 0.008 224)"
+        stroke="oklch(0.48 0.025 76)"
         stroke-width="2.6"
         stroke-linecap="round"
         stroke-dasharray="260"
@@ -70,7 +70,7 @@ function replay() {
         y1="118"
         x2="96"
         y2="118"
-        stroke="oklch(0.70 0.10 52)"
+        stroke="oklch(0.55 0.08 78)"
         stroke-width="2.4"
         stroke-linecap="round"
         stroke-dasharray="100"
@@ -82,7 +82,7 @@ function replay() {
         cx="50"
         cy="104"
         r="1.7"
-        fill="oklch(0.92 0.09 68)"
+        fill="oklch(0.64 0.08 74)"
         style="
           transform-box: fill-box;
           transform-origin: center;
@@ -93,7 +93,7 @@ function replay() {
         cx="36"
         cy="96"
         r="1.1"
-        fill="oklch(0.88 0.08 58)"
+        fill="oklch(0.62 0.07 72)"
         style="
           transform-box: fill-box;
           transform-origin: center;
@@ -104,7 +104,7 @@ function replay() {
         cx="64"
         cy="99"
         r="1.4"
-        fill="oklch(0.90 0.09 62)"
+        fill="oklch(0.63 0.08 76)"
         style="
           transform-box: fill-box;
           transform-origin: center;
@@ -115,7 +115,7 @@ function replay() {
         cx="43"
         cy="88"
         r="0.9"
-        fill="oklch(0.86 0.07 55)"
+        fill="oklch(0.60 0.07 70)"
         style="
           transform-box: fill-box;
           transform-origin: center;
@@ -126,7 +126,7 @@ function replay() {
         cx="60"
         cy="82"
         r="0.8"
-        fill="oklch(0.94 0.10 72)"
+        fill="oklch(0.62 0.07 78)"
         style="
           transform-box: fill-box;
           transform-origin: center;
@@ -157,7 +157,7 @@ function replay() {
   inset: 0;
   background: radial-gradient(
     ellipse 70% 60% at 50% 44%,
-    oklch(0.35 0.09 52 / 0.18),
+    oklch(0.65 0.08 78 / 0.18),
     transparent 72%
   );
   pointer-events: none;
