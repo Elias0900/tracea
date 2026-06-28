@@ -52,7 +52,6 @@ function startAnimation(): void {
     if (el) el.style.strokeDashoffset = '1000'
   })
 
-  const rings = document.getElementById('k-rings'); if (rings) rings.style.opacity = '0'
   const shaft = document.getElementById('k-shaft'); if (shaft) shaft.style.transform = 'scaleY(0)'
   const heart = document.getElementById('k-heart'); if (heart) heart.style.transform = 'scale(0)'
   const word  = document.getElementById('k-word')
@@ -72,16 +71,15 @@ function startAnimation(): void {
   s('k-scroll-rc',   520, 1620)
   s('k-leaf-l',      720, 1780)
   s('k-leaf-r',      720, 1900)
-  s('k-leaf-stem',   340, 2320)
-  s('k-leaf-petal',  440, 2420)
+  s('k-leaf-stem',   340, 2200)
+  s('k-leaf-petal',  440, 2300)
 
-  tween('k-rings', (el, e) => { el.style.opacity = String(e) }, 620, 2320)
-  tween('k-shaft', (el, e) => { el.style.transform = `scaleY(${e})` }, 1100, 2680, eInOut)
-  tween('k-heart', (el, e) => { el.style.transform = `scale(${e})` },  950, 3680, eSpring)
+  tween('k-shaft', (el, e) => { el.style.transform = `scaleY(${e})` }, 1100, 2480, eInOut)
+  tween('k-heart', (el, e) => { el.style.transform = `scale(${e})` },  950, 3480, eSpring)
   tween('k-word',  (el, e) => {
     el.style.opacity = String(e)
     el.style.transform = `translateY(${8 * (1 - e)}px)`
-  }, 860, 4460)
+  }, 860, 4260)
 }
 
 onMounted(startAnimation)
@@ -97,37 +95,62 @@ defineExpose({ replay: startAnimation })
   <div class="key-wrap" @click="startAnimation">
     <svg width="100" height="290" viewBox="0 0 70 202" fill="none" class="key-svg">
       <defs>
-        <linearGradient id="gHero" x1="20%" y1="0%" x2="80%" y2="100%">
-          <stop offset="0%"   stop-color="oklch(0.80 0.10 90)"/>
-          <stop offset="38%"  stop-color="oklch(0.62 0.09 80)"/>
-          <stop offset="100%" stop-color="oklch(0.46 0.08 68)"/>
+        <linearGradient id="gHero" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="oklch(0.72 0.08 86)"/>
+          <stop offset="100%" stop-color="oklch(0.50 0.08 70)"/>
         </linearGradient>
       </defs>
-      <ellipse id="k-bow-outer" cx="35" cy="52" rx="28" ry="34" stroke="url(#gHero)" stroke-width="3.5" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <ellipse id="k-bow-inner" cx="35" cy="52" rx="16" ry="22" stroke="url(#gHero)" stroke-width="2.2" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-crown-arch"  d="M 28 20 Q 31 12 35 11 Q 39 12 42 20" stroke="url(#gHero)" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-crown-stem"  d="M 35 11 L 35 6"                       stroke="url(#gHero)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-crown-petal" d="M 30 7 Q 35 2 40 7"                   stroke="url(#gHero)" stroke-width="2"   fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-scroll-l"  d="M 8 52 C 1 44 3 30 13 27 C 18 25 22 29 18 34"    stroke="url(#gHero)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-scroll-lc" d="M 18 34 C 14 38 10 37 10 34"                      stroke="url(#gHero)" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-scroll-r"  d="M 62 52 C 69 44 67 30 57 27 C 52 25 48 29 52 34" stroke="url(#gHero)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-scroll-rc" d="M 52 34 C 56 38 60 37 60 34"                      stroke="url(#gHero)" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-leaf-l"     d="M 26 87 C 18 81 22 72 29 75 C 32 76 34 82 35 85" stroke="url(#gHero)" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-leaf-r"     d="M 44 87 C 52 81 48 72 41 75 C 38 76 36 82 35 85" stroke="url(#gHero)" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-leaf-stem"  d="M 35 85 L 35 78"                                  stroke="url(#gHero)" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <path id="k-leaf-petal" d="M 31 79 Q 35 73 39 79"                             stroke="url(#gHero)" stroke-width="2"   fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-      <g id="k-rings" style="opacity:0">
-        <ellipse cx="35" cy="90.5" rx="10" ry="2.8" fill="url(#gHero)"/>
-        <ellipse cx="35" cy="96"   rx="9"  ry="2.3" fill="url(#gHero)"/>
-        <ellipse cx="35" cy="101"  rx="8"  ry="2"   fill="url(#gHero)"/>
-      </g>
+
+      <ellipse id="k-bow-outer" cx="35" cy="52" rx="28" ry="34"
+        stroke="url(#gHero)" stroke-width="3" fill="none"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <ellipse id="k-bow-inner" cx="35" cy="52" rx="16" ry="22"
+        stroke="url(#gHero)" stroke-width="2" fill="none"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+
+      <path id="k-crown-arch"  d="M 28 20 Q 31 12 35 11 Q 39 12 42 20"
+        stroke="url(#gHero)" stroke-width="2.5" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-crown-stem"  d="M 35 11 L 35 6"
+        stroke="url(#gHero)" stroke-width="2" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-crown-petal" d="M 30 7 Q 35 2 40 7"
+        stroke="url(#gHero)" stroke-width="1.8" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+
+      <path id="k-scroll-l"  d="M 8 52 C 1 44 3 30 13 27 C 18 25 22 29 18 34"
+        stroke="url(#gHero)" stroke-width="2" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-scroll-lc" d="M 18 34 C 14 38 10 37 10 34"
+        stroke="url(#gHero)" stroke-width="1.5" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-scroll-r"  d="M 62 52 C 69 44 67 30 57 27 C 52 25 48 29 52 34"
+        stroke="url(#gHero)" stroke-width="2" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-scroll-rc" d="M 52 34 C 56 38 60 37 60 34"
+        stroke="url(#gHero)" stroke-width="1.5" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+
+      <path id="k-leaf-l"     d="M 26 87 C 18 81 22 72 29 75 C 32 76 34 82 35 85"
+        stroke="url(#gHero)" stroke-width="1.9" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-leaf-r"     d="M 44 87 C 52 81 48 72 41 75 C 38 76 36 82 35 85"
+        stroke="url(#gHero)" stroke-width="1.9" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-leaf-stem"  d="M 35 85 L 35 78"
+        stroke="url(#gHero)" stroke-width="1.9" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      <path id="k-leaf-petal" d="M 31 79 Q 35 73 39 79"
+        stroke="url(#gHero)" stroke-width="1.8" fill="none" stroke-linecap="round"
+        stroke-dasharray="1000" stroke-dashoffset="1000"/>
+
       <g id="k-shaft" style="transform-box:fill-box;transform-origin:center top;transform:scaleY(0)">
-        <rect x="31" y="104" width="8" height="56" rx="3" fill="url(#gHero)"/>
-        <line x1="35" y1="107" x2="35" y2="156" stroke="oklch(0.86 0.10 90 / .22)" stroke-width="1.5"/>
+        <rect x="31" y="88" width="8" height="72" rx="3" fill="url(#gHero)"/>
       </g>
+
       <g id="k-heart" style="transform-box:fill-box;transform-origin:center top;transform:scale(0)">
-        <path d="M 35 199 C 16 184 14 163 24 158 C 29 154 35 159 35 166 C 35 159 41 154 46 158 C 56 163 54 184 35 199 Z" fill="url(#gHero)"/>
-        <path d="M 27 166 C 23 172 23 181 29 185" stroke="oklch(0.86 0.10 90 / .28)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 35 199 C 16 184 14 163 24 158 C 29 154 35 159 35 166 C 35 159 41 154 46 158 C 56 163 54 184 35 199 Z"
+          fill="url(#gHero)"/>
       </g>
     </svg>
 
@@ -153,9 +176,4 @@ defineExpose({ replay: startAnimation })
   color: var(--text-primary);
 }
 .wordmark em { color: var(--accent); }
-.replay-hint {
-  font: 300 11px/1 'Work Sans', sans-serif;
-  color: var(--text-tertiary);
-  letter-spacing: .06em;
-}
 </style>

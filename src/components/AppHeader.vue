@@ -25,10 +25,9 @@ function goTo(id: string) {
       <a class="logo" @click="menuOpen = false">
         <svg width="11" height="32" viewBox="0 0 70 202" fill="none">
           <defs>
-            <linearGradient id="gKeyHeader" x1="20%" y1="0%" x2="80%" y2="100%">
-              <stop offset="0%" stop-color="oklch(0.80 0.10 90)" />
-              <stop offset="38%" stop-color="oklch(0.62 0.09 80)" />
-              <stop offset="100%" stop-color="oklch(0.46 0.08 68)" />
+            <linearGradient id="gKeyHeader" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="oklch(0.72 0.08 86)" />
+              <stop offset="100%" stop-color="oklch(0.50 0.08 70)" />
             </linearGradient>
           </defs>
 
@@ -38,7 +37,7 @@ function goTo(id: string) {
             rx="28"
             ry="34"
             stroke="url(#gKeyHeader)"
-            stroke-width="3.5"
+            stroke-width="3"
             fill="none"
           />
           <ellipse
@@ -47,7 +46,7 @@ function goTo(id: string) {
             rx="16"
             ry="22"
             stroke="url(#gKeyHeader)"
-            stroke-width="2.2"
+            stroke-width="2"
             fill="none"
           />
         </svg>
