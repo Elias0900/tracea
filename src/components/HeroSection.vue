@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArchAnimation from './ArchAnimation.vue'
+import KeyLogoAnimated from '@/composables/KeyLogoAnimated.vue'
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import ArchAnimation from './ArchAnimation.vue'
     <div class="hero-inner">
       <!-- Visual LEFT -->
       <div class="hero-visual">
-        <ArchAnimation />
+        <KeyLogoAnimated />
       </div>
 
       <!-- Copy RIGHT -->
@@ -41,8 +41,10 @@ import ArchAnimation from './ArchAnimation.vue'
   align-items: center;
 }
 .hero-visual {
-  position: relative;
-  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
 }
 
 .overline {
@@ -120,7 +122,7 @@ import ArchAnimation from './ArchAnimation.vue'
     padding: 48px 0 56px;
     gap: 36px;
   }
-  .hero-visual { height: 280px; }
+  .hero-visual { min-height: 320px; }
   .headline { font-size: 36px; }
   .body-text { font-size: 15px; }
   .hero-actions { flex-direction: column; }

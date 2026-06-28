@@ -11,16 +11,22 @@ const menuOpen = ref(false)
   <header class="header">
     <div class="inner">
       <a href="#top" class="logo" @click="menuOpen = false">
-        <svg width="20" height="28" viewBox="0 0 100 132" fill="none">
-          <path
-            d="M 14 120 L 14 44 A 36 36 0 0 1 86 44 L 86 120"
-            stroke="var(--logo-stroke)"
-            stroke-width="4"
-            stroke-linecap="round"
-            fill="none"
-          />
-          <line x1="4" y1="127" x2="96" y2="127" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" />
-          <circle cx="50" cy="82" r="4" fill="var(--accent)" opacity="0.7" />
+        <svg width="11" height="32" viewBox="0 0 70 202" fill="none">
+          <defs>
+            <linearGradient id="gKeyHeader" x1="20%" y1="0%" x2="80%" y2="100%">
+              <stop offset="0%"   stop-color="oklch(0.80 0.10 90)"/>
+              <stop offset="40%"  stop-color="oklch(0.62 0.09 80)"/>
+              <stop offset="100%" stop-color="oklch(0.46 0.08 68)"/>
+            </linearGradient>
+          </defs>
+          <circle cx="35" cy="38" r="25" stroke="url(#gKeyHeader)" stroke-width="4" fill="none"/>
+          <circle cx="35" cy="38" r="13" stroke="url(#gKeyHeader)" stroke-width="2.5" fill="none"/>
+          <circle cx="35" cy="38" r="3.5" fill="url(#gKeyHeader)"/>
+          <rect x="28" y="63" width="14" height="6"  rx="2.5" fill="url(#gKeyHeader)"/>
+          <rect x="32" y="69" width="6"  height="94" rx="2.5" fill="url(#gKeyHeader)"/>
+          <rect x="38" y="104" width="20" height="12" rx="2.5" fill="url(#gKeyHeader)"/>
+          <rect x="38" y="130" width="13" height="9"  rx="2"   fill="url(#gKeyHeader)"/>
+          <path d="M 35 200 C 16 185 14 164 24 159 C 29 155 35 160 35 167 C 35 160 41 155 46 159 C 56 164 54 185 35 200 Z" fill="url(#gKeyHeader)"/>
         </svg>
         <span class="logo-name">le seuil</span>
       </a>
