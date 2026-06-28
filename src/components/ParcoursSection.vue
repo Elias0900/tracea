@@ -182,4 +182,10 @@ const steps = [
     margin-top: 36px;
   }
 }
+
+@media (max-width: 480px) {
+  .parcours { padding: 48px 16px; }
+  .title { font-size: 24px; }
+  .step-title { font-size: 18px; }
+}
 </style>

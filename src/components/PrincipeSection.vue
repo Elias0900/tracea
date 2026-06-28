@@ -5,7 +5,7 @@
       <h2 class="title">Une nostalgie longtemps restée sans réponse.</h2>
       <p class="body">
         On ne sonne pas chez un inconnu en espérant entrer dans son salon. Ce désir n'avait aucun
-        cadre pour exister. Le Seuil en crée un&nbsp;: une médiation douce, un accord entre deux
+        cadre pour exister. Aux Origines en crée un&nbsp;: une médiation douce, un accord entre deux
         familles et un médiateur présent à chaque étape.
       </p>
       <blockquote class="quote">
@@ -63,5 +63,11 @@
   .title { font-size: 28px; }
   .body { font-size: 15.5px; }
   .quote { font-size: 21px; margin-top: 32px; }
+}
+
+@media (max-width: 480px) {
+  .principe { padding: 48px 16px; }
+  .title { font-size: 24px; }
+  .quote { font-size: 18px; }
 }
 </style>

@@ -117,6 +117,11 @@ import KeyLogoAnimated from '@/components/KeyLogoAnimated.vue'
   color: var(--accent);
 }
 
+@media (max-width: 1024px) {
+  .hero-inner { gap: 40px; }
+  .headline { font-size: 42px; }
+}
+
 @media (max-width: 768px) {
   .hero { padding: 0 20px; }
   .hero-inner {
@@ -124,14 +129,16 @@ import KeyLogoAnimated from '@/components/KeyLogoAnimated.vue'
     padding: 48px 0 56px;
     gap: 36px;
   }
-  .hero-visual { min-height: 320px; }
-  .headline { font-size: 36px; }
-  .body-text { font-size: 15px; }
+  .hero-visual { min-height: 280px; }
+  .headline { font-size: 34px; }
+  .body-text { font-size: 15px; max-width: 100%; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-ghost { text-align: center; }
 }
 
 @media (max-width: 480px) {
-  .headline { font-size: 30px; }
+  .hero { padding: 0 16px; }
+  .headline { font-size: 28px; }
+  .hero-actions { gap: 10px; }
 }
 </style>

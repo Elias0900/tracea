@@ -110,4 +110,11 @@ const cards = [
   .card { padding: 24px; }
   .card-title { font-size: 22px; }
 }
+
+@media (max-width: 480px) {
+  .pourqui { padding: 48px 16px; }
+  .title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 20px; }
+}
 </style>
