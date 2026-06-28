@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 
 const step = ref(0)
-const role = ref(null)
+const role = ref<string | null>(null)
 const address = ref('')
 const era = ref('')
 const memory = ref('')

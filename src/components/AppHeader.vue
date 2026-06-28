@@ -1,15 +1,10 @@
-<script setup lang="ts">
-defineProps({
-  dark: { type: Boolean, default: false },
-})
-defineEmits(['toggle-theme'])
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header class="header">
     <div class="inner">
       <a href="#top" class="logo">
-        <svg width="16" height="20" viewBox="0 0 52 62" fill="none" style="opacity: 0.7">
+        <svg width="16" height="20" viewBox="0 0 52 62" fill="none" style="opacity: 0.85">
           <path
             d="M 2 60 L 2 2 L 50 2 L 50 60"
             stroke="var(--logo-stroke)"
@@ -33,12 +28,6 @@ defineEmits(['toggle-theme'])
         <a href="#principe" class="nav-link">Le principe</a>
         <a href="#parcours" class="nav-link">Le parcours</a>
         <a href="#pourqui" class="nav-link">Pour qui</a>
-
-        <button class="theme-btn" @click="$emit('toggle-theme')">
-          <span>{{ dark ? '☀' : '◑' }}</span>
-          <span>{{ dark ? 'Mode clair' : 'Mode sombre' }}</span>
-        </button>
-
         <a href="#demande" class="cta">Commencer</a>
       </nav>
     </div>
@@ -53,12 +42,11 @@ defineEmits(['toggle-theme'])
   background: var(--header-bg);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  transition: background 0.35s;
 }
 .inner {
-  max-width: 1160px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 15px 32px;
+  padding: 20px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,50 +59,26 @@ defineEmits(['toggle-theme'])
 }
 .logo-name {
   font:
-    italic 500 20px/1 'Cormorant Garamond',
+    italic 500 22px/1 'Cormorant Garamond',
     serif;
-  color: var(--logo-text);
-  opacity: 0.82;
+  color: var(--text-primary);
 }
 .nav {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 32px;
 }
 .nav-link {
   font:
-    400 14px/1 'Jost',
+    400 15px/1 'Jost',
     sans-serif;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   transition: color 0.2s;
 }
 .nav-link:hover {
   color: var(--accent);
 }
-
-.theme-btn {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--toggle-bg);
-  cursor: pointer;
-  font:
-    500 13px/1 'Jost',
-    sans-serif;
-  color: var(--text-secondary);
-  transition:
-    border-color 0.25s,
-    color 0.25s;
-}
-.theme-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .cta {
   padding: 10px 18px;
   background: var(--accent);
