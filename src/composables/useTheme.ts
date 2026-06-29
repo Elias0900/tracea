@@ -28,6 +28,8 @@ const light = {
   '--sel-bg': 'oklch(0.72 0.020 78)',
   '--logo-shadow-alpha': '0.35',
   '--logo-halo-alpha': '1',
+  '--logo-blend': 'multiply',
+  '--logo-filter': 'none',
 }
 
 const darkTheme = {
@@ -56,6 +58,8 @@ const darkTheme = {
   '--sel-bg': 'oklch(0.40 0.014 78)',
   '--logo-shadow-alpha': '0',
   '--logo-halo-alpha': '0',
+  '--logo-blend': 'screen',
+  '--logo-filter': 'invert(1) hue-rotate(180deg)',
 }
 
 export function useTheme() {

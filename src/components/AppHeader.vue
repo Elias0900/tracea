@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import logoSrc from '@/assets/double-cle.png'
+import logoSrc from '@/assets/cle-arche.png'
 
 defineProps<{ dark: boolean }>()
 defineEmits(['toggle-theme'])
@@ -121,6 +121,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   gap: 13px;
   text-decoration: none;
   flex-shrink: 0;
+  perspective: 500px;
 }
 .logo-img {
   display: block;
@@ -128,18 +129,26 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
-  animation: headerLogoIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-  filter: drop-shadow(0 2px 8px oklch(0.50 0.08 70 / var(--logo-shadow-alpha, 0.35)));
-  transition: filter 0.35s ease, transform 0.3s ease;
+  mix-blend-mode: var(--logo-blend, multiply);
+  filter: var(--logo-filter, none);
+  animation:
+    headerLogoIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both,
+    headerFlip   10s ease-in-out 2s infinite;
+  transition: opacity 0.3s ease;
 }
 .logo:hover .logo-img {
-  filter: drop-shadow(0 0 14px oklch(0.72 0.08 86 / calc(var(--logo-halo-alpha, 1) * 0.55)));
-  transform: scale(1.08);
+  opacity: 0.85;
 }
 @keyframes headerLogoIn {
   from { opacity: 0; transform: scale(0.75); }
   65%  { transform: scale(1.05); }
   to   { opacity: 1; transform: scale(1); }
+}
+@keyframes headerFlip {
+  0%    { transform: rotateY(0deg); }
+  4%    { transform: rotateY(180deg); }
+  8%    { transform: rotateY(360deg); }
+  100%  { transform: rotateY(360deg); }
 }
 .logo-name {
   font: italic 500 22px/1 'Spectral', serif;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logoSrc from '@/assets/double-cle.png'
+import logoSrc from '@/assets/cle-arche.png'
 </script>
 
 <template>
@@ -67,13 +67,14 @@ import logoSrc from '@/assets/double-cle.png'
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
+  mix-blend-mode: screen;
+  filter: invert(1) hue-rotate(180deg);
   animation: footerLogoIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-  filter: drop-shadow(0 3px 10px oklch(0.50 0.08 70 / var(--logo-shadow-alpha, 0.35)));
-  transition: filter 0.4s ease, transform 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 .brand:hover .brand-img {
-  filter: drop-shadow(0 0 16px oklch(0.72 0.08 86 / calc(var(--logo-halo-alpha, 1) * 0.55)));
   transform: scale(1.07) translateY(-3px);
+  opacity: 0.85;
 }
 @keyframes footerLogoIn {
   from { opacity: 0; transform: scale(0.82) translateY(14px); }
