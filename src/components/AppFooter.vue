@@ -1,28 +1,13 @@
+<script setup lang="ts">
+import logoSrc from '@/assets/double-cle.png'
+</script>
+
 <template>
   <footer class="footer">
     <div class="inner">
 
       <RouterLink to="/" class="brand">
-        <svg width="14" height="40" viewBox="0 0 70 202" fill="none">
-          <defs>
-            <linearGradient id="gKeyFooter" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%"   stop-color="oklch(0.72 0.08 86)" />
-              <stop offset="100%" stop-color="oklch(0.50 0.08 70)" />
-            </linearGradient>
-          </defs>
-          <ellipse cx="35" cy="52" rx="28" ry="34" stroke="url(#gKeyFooter)" stroke-width="3"   fill="none"/>
-          <ellipse cx="35" cy="52" rx="16" ry="22" stroke="url(#gKeyFooter)" stroke-width="2"   fill="none"/>
-          <path d="M 28 20 Q 31 12 35 11 Q 39 12 42 20" stroke="url(#gKeyFooter)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M 35 11 L 35 6"                       stroke="url(#gKeyFooter)" stroke-width="2"   fill="none" stroke-linecap="round"/>
-          <path d="M 30 7 Q 35 2 40 7"                   stroke="url(#gKeyFooter)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <path d="M 8 52 C 1 44 3 30 13 27 C 18 25 22 29 18 34"    stroke="url(#gKeyFooter)" stroke-width="2"   fill="none" stroke-linecap="round"/>
-          <path d="M 18 34 C 14 38 10 37 10 34"                      stroke="url(#gKeyFooter)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M 62 52 C 69 44 67 30 57 27 C 52 25 48 29 52 34" stroke="url(#gKeyFooter)" stroke-width="2"   fill="none" stroke-linecap="round"/>
-          <path d="M 52 34 C 56 38 60 37 60 34"                      stroke="url(#gKeyFooter)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M 26 87 C 18 81 22 72 29 75 C 32 76 34 82 35 85 M 44 87 C 52 81 48 72 41 75 C 38 76 36 82 35 85 M 35 85 L 35 78 M 31 79 Q 35 73 39 79" stroke="url(#gKeyFooter)" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-          <rect x="31" y="88" width="8" height="72" rx="3" fill="url(#gKeyFooter)"/>
-          <path d="M 35 199 C 16 184 14 163 24 158 C 29 154 35 159 35 166 C 35 159 41 154 46 158 C 56 163 54 184 35 199 Z" fill="url(#gKeyFooter)"/>
-        </svg>
+        <img :src="logoSrc" alt="Logo Aux Origines" class="brand-img" />
         <div>
           <span class="brand-name">Aux Origines</span>
           <span class="brand-sub">médiation · visites accompagnées</span>
@@ -75,6 +60,24 @@
   align-items: center;
   gap: 13px;
   text-decoration: none;
+}
+.brand-img {
+  display: block;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  animation: footerLogoIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  filter: drop-shadow(0 3px 10px oklch(0.50 0.08 70 / var(--logo-shadow-alpha, 0.35)));
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+.brand:hover .brand-img {
+  filter: drop-shadow(0 0 16px oklch(0.72 0.08 86 / calc(var(--logo-halo-alpha, 1) * 0.55)));
+  transform: scale(1.07) translateY(-3px);
+}
+@keyframes footerLogoIn {
+  from { opacity: 0; transform: scale(0.82) translateY(14px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 .brand-name {
   display: block;

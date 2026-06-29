@@ -26,6 +26,8 @@ const light = {
   '--form-shadow': '0 18px 50px oklch(0.48 0.06 76 / .15)',
   '--arch-bg': 'oklch(0.75 0.018 80)',
   '--sel-bg': 'oklch(0.72 0.020 78)',
+  '--logo-shadow-alpha': '0.35',
+  '--logo-halo-alpha': '1',
 }
 
 const darkTheme = {
@@ -52,6 +54,8 @@ const darkTheme = {
   '--form-shadow': '0 18px 50px oklch(0.18 0.010 68 / .40)',
   '--arch-bg': 'oklch(0.32 0.014 74)',
   '--sel-bg': 'oklch(0.40 0.014 78)',
+  '--logo-shadow-alpha': '0',
+  '--logo-halo-alpha': '0',
 }
 
 export function useTheme() {
