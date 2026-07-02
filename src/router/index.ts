@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LeSeuil from '@/view/LeSeuil.vue'
 import QuiSommesNous from '@/view/QuiSommesNous.vue'
-import Tarifs from '@/view/Tarifs.vue'
 import Contact from '@/view/Contact.vue'
 import Rgpd from '@/view/Rgpd.vue'
 
@@ -15,11 +14,6 @@ const routes = [
     path: '/qui-sommes-nous',
     name: 'qui-sommes-nous',
     component: QuiSommesNous,
-  },
-  {
-    path: '/tarifs',
-    name: 'tarifs',
-    component: Tarifs,
   },
   {
     path: '/contact',

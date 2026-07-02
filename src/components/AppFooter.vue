@@ -18,7 +18,6 @@ import logoSrc from '@/assets/cle-arche-header.png'
         <div class="link-col">
           <span class="col-title">Service</span>
           <RouterLink to="/qui-sommes-nous" class="link">Qui sommes-nous</RouterLink>
-          <RouterLink to="/tarifs" class="link">Tarifs</RouterLink>
         </div>
         <div class="link-col">
           <span class="col-title">Nous joindre</span>

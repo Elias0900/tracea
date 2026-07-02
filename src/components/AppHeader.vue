@@ -49,7 +49,6 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
         <a class="nav-link" @click.prevent="goTo('parcours')">Le parcours</a>
         <a class="nav-link" @click.prevent="goTo('pourqui')">Pour qui</a>
         <RouterLink to="/qui-sommes-nous" class="nav-link">Qui sommes-nous</RouterLink>
-        <RouterLink to="/tarifs"          class="nav-link">Tarifs</RouterLink>
       </nav>
 
       <!-- Actions desktop -->
@@ -80,7 +79,6 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
       <a class="mob-link" @click.prevent="goTo('parcours')">Le parcours</a>
       <a class="mob-link" @click.prevent="goTo('pourqui')">Pour qui</a>
       <RouterLink to="/qui-sommes-nous" class="mob-link" @click="closeMenu">Qui sommes-nous</RouterLink>
-      <RouterLink to="/tarifs"          class="mob-link" @click="closeMenu">Tarifs</RouterLink>
       <RouterLink to="/contact"         class="mob-link" @click="closeMenu">Contact</RouterLink>
       <div class="mob-footer">
         <button class="theme-btn" type="button" @click="$emit('toggle-theme')">
