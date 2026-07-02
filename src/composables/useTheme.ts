@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue'
 
-const dark = ref(false)
+const dark = ref(true)
 
 const light = {
   '--accent': 'oklch(0.48 0.09 76)',
