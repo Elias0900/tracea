@@ -19,6 +19,7 @@ defineExpose({ replay })
     <p :key="'w-' + animKey" class="wordmark">
       <slot>Tracea<em>.</em></slot>
     </p>
+    <p :key="'t-' + animKey" class="tagline">Revivre. Ressentir. Transmettre.</p>
   </div>
 </template>
 
@@ -83,5 +84,20 @@ defineExpose({ replay })
 @keyframes wordIn {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Tagline ── */
+.tagline {
+  margin: 2px 0 0;
+  font: 400 13px/1.4 'Work Sans', sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-align: center;
+  animation: wordIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+}
+
+@media (max-width: 480px) {
+  .tagline { font-size: 11px; letter-spacing: 0.1em; }
 }
 </style>

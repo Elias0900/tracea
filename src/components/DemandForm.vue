@@ -1,21 +1,39 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { sendQuickDemand } from '@/composables/useEmailjs'
 
 const name = ref('')
 const contact = ref('')
 const message = ref('')
 const submitted = ref(false)
+const sending = ref(false)
+const error = ref(false)
 
 const canSubmit = computed(() => name.value.trim().length > 0 && contact.value.trim().length > 0)
 
-function submit() {
-  if (canSubmit.value) submitted.value = true
+async function submit() {
+  if (!canSubmit.value || sending.value) return
+  sending.value = true
+  error.value = false
+  try {
+    await sendQuickDemand({
+      from_name: name.value,
+      from_contact: contact.value,
+      message: message.value,
+    })
+    submitted.value = true
+  } catch {
+    error.value = true
+  } finally {
+    sending.value = false
+  }
 }
 function restart() {
   name.value = ''
   contact.value = ''
   message.value = ''
   submitted.value = false
+  error.value = false
 }
 </script>
 
@@ -43,12 +61,19 @@ function restart() {
             placeholder="Quelques mots sur votre situation…"
           />
 
+          <p v-if="error" class="form-error">
+            Une erreur est survenue lors de l'envoi. Merci de réessayer.
+          </p>
+
           <button
             class="nav-next"
-            :style="{ opacity: canSubmit ? '1' : '0.38', pointerEvents: canSubmit ? 'auto' : 'none' }"
+            :style="{
+              opacity: canSubmit && !sending ? '1' : '0.38',
+              pointerEvents: canSubmit && !sending ? 'auto' : 'none',
+            }"
             @click="submit"
           >
-            Être recontacté
+            {{ sending ? 'Envoi en cours…' : 'Être recontacté' }}
           </button>
         </div>
 
@@ -182,6 +207,13 @@ function restart() {
 }
 .field-textarea:focus {
   border-color: var(--accent);
+}
+.form-error {
+  margin: 16px 0 0;
+  font:
+    400 13px/1.5 'Work Sans',
+    sans-serif;
+  color: #c0392b;
 }
 .nav-next {
   width: 100%;

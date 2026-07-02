@@ -16,6 +16,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "pinia": "^3.0.4",
     "vue": "beta",
     "vue-router": "^5.1.0"

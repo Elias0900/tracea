@@ -17,7 +17,7 @@ const { dark, toggleTheme } = useTheme()
           <p class="overline">Notre histoire</p>
           <h1 class="title">Nés d'un désir que beaucoup portent en silence.</h1>
           <p class="lead">
-            Tracea est né d'une observation simple : des milliers de personnes portent
+            Tracea est né d'une observation simple : des millions de personnes portent
             en elles le souvenir d'une maison, d'un appartement, d'un lieu d'enfance
             qu'elles ne reverront peut-être jamais — non par impossibilité géographique,
             mais par impossibilité humaine. Nous avons voulu changer cela.
@@ -75,18 +75,18 @@ const { dark, toggleTheme } = useTheme()
           <div class="team-grid">
             <div class="team-card">
               <div class="team-avatar" />
-              <span class="team-name">Marie L.</span>
-              <span class="team-role">Médiatrice principale</span>
+              <span class="team-name">Nicolas P.</span>
+              <span class="team-role">Co-Fondateur</span>
             </div>
             <div class="team-card">
               <div class="team-avatar" />
-              <span class="team-name">Thomas R.</span>
-              <span class="team-role">Coordinateur</span>
+              <span class="team-name">Laurine L.</span>
+              <span class="team-role">Co-Fondatrice</span>
             </div>
             <div class="team-card">
               <div class="team-avatar" />
-              <span class="team-name">Claire M.</span>
-              <span class="team-role">Suivi & accompagnement</span>
+              <span class="team-name">Elias G.</span>
+              <span class="team-role">Co-Fondateur</span>
             </div>
           </div>
         </div>

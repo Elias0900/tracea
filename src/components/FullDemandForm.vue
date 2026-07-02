@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { sendFullDemand } from '@/composables/useEmailjs'
 
 const step = ref(0)
 const totalSteps = 5
+
+const roleLabels: Record<string, string> = {
+  visiteur: "C'est sa maison d'enfance",
+  proche: "Organise pour un proche",
+  autre: "Autre situation",
+}
 
 const role = ref<string | null>(null)
 const address = ref('')
@@ -30,6 +37,8 @@ const canNext = computed(() => {
 const canSubmit = computed(() => canNext.value && consent.value)
 const progress = computed(() => ((step.value + 1) / totalSteps) * 100 + '%')
 const stepLabel = computed(() => `Étape ${step.value + 1} sur ${totalSteps}`)
+const sending = ref(false)
+const error = ref(false)
 
 function next() {
   if (step.value < totalSteps - 1) step.value++
@@ -37,8 +46,32 @@ function next() {
 function back() {
   if (step.value > 0) step.value--
 }
-function submit() {
-  if (canSubmit.value) submitted.value = true
+async function submit() {
+  if (!canSubmit.value || sending.value) return
+  sending.value = true
+  error.value = false
+  try {
+    await sendFullDemand({
+      role: roleLabels[role.value ?? ''] ?? '',
+      address: address.value,
+      city: city.value,
+      postal_code: postalCode.value,
+      era: era.value,
+      memory: memory.value,
+      motivation: motivation.value,
+      from_name: name.value,
+      phone: phone.value,
+      email: email.value,
+      availability: availability.value,
+      source: source.value,
+      extra_message: extraMessage.value,
+    })
+    submitted.value = true
+  } catch {
+    error.value = true
+  } finally {
+    sending.value = false
+  }
 }
 function restart() {
   step.value = 0
@@ -57,6 +90,7 @@ function restart() {
   extraMessage.value = ''
   consent.value = false
   submitted.value = false
+  error.value = false
 }
 </script>
 
@@ -188,6 +222,9 @@ function restart() {
           <input type="checkbox" v-model="consent" />
           <span>J'accepte d'être recontacté(e) par Tracea au sujet de ma demande.</span>
         </label>
+        <p v-if="error" class="form-error">
+          Une erreur est survenue lors de l'envoi. Merci de réessayer.
+        </p>
       </div>
 
       <!-- Submitted -->
@@ -233,12 +270,12 @@ function restart() {
           v-if="step === totalSteps - 1"
           class="nav-next"
           :style="{
-            opacity: canSubmit ? '1' : '0.38',
-            pointerEvents: canSubmit ? 'auto' : 'none',
+            opacity: canSubmit && !sending ? '1' : '0.38',
+            pointerEvents: canSubmit && !sending ? 'auto' : 'none',
           }"
           @click="submit"
         >
-          Envoyer ma demande
+          {{ sending ? 'Envoi en cours…' : 'Envoyer ma demande' }}
         </button>
       </div>
     </div>
@@ -438,6 +475,13 @@ function restart() {
     300 13.5px/1.5 'Work Sans',
     sans-serif;
   color: var(--text-secondary);
+}
+.form-error {
+  margin: 16px 0 0;
+  font:
+    400 13px/1.5 'Work Sans',
+    sans-serif;
+  color: #c0392b;
 }
 
 .form-nav {
