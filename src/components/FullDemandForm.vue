@@ -553,6 +553,16 @@ function restart() {
 .field-input:focus {
   border-color: var(--accent);
 }
+.field-input--error {
+  border-color: #c0392b;
+}
+.field-error {
+  margin: 6px 0 0;
+  font:
+    400 12.5px/1.4 'Work Sans',
+    sans-serif;
+  color: #c0392b;
+}
 .field-textarea {
   width: 100%;
   margin-top: 18px;

@@ -11,7 +11,6 @@
       <blockquote class="quote">
         « Ce n'est pas seulement une maison. C'est une part de soi qu'on retrouve. »
       </blockquote>
-      <RouterLink to="/entamer-les-demarches" class="cta">Entamer les démarches →</RouterLink>
     </div>
   </section>
 </template>
@@ -58,35 +57,11 @@
     serif;
   color: var(--quote-color);
 }
-.cta {
-  display: inline-block;
-  margin-top: 40px;
-  padding: 15px 28px;
-  background: var(--accent);
-  border: 2px solid var(--accent);
-  color: #fff;
-  font:
-    500 15px/1 'Work Sans',
-    sans-serif;
-  border-radius: 3px;
-  text-decoration: none;
-  transition:
-    background 0.5s ease,
-    border-color 0.5s ease,
-    color 0.5s ease;
-}
-.cta:hover {
-  background: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 @media (max-width: 768px) {
   .principe { padding: 64px 20px; }
   .title { font-size: 28px; }
   .body { font-size: 15.5px; }
   .quote { font-size: 21px; margin-top: 32px; }
-  .cta { margin-top: 32px; width: 100%; text-align: center; }
 }
 
 @media (max-width: 480px) {

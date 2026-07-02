@@ -99,10 +99,7 @@ function restart() {
 
           <button
             class="nav-next"
-            :style="{
-              opacity: canSubmit && !sending ? '1' : '0.38',
-              pointerEvents: canSubmit && !sending ? 'auto' : 'none',
-            }"
+            :style="{ opacity: canSubmit && !sending ? '1' : '0.55', pointerEvents: sending ? 'none' : 'auto' }"
             @click="submit"
           >
             {{ sending ? 'Envoi en cours…' : 'Être recontacté' }}

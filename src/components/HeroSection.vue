@@ -1,5 +1,19 @@
 <script setup lang="ts">
+import { useRouter, useRoute } from 'vue-router'
 import KeyLogoAnimated from '@/components/KeyLogoAnimated.vue'
+
+const router = useRouter()
+const route = useRoute()
+
+function goTo(id: string) {
+  if (route.path !== '/') {
+    router.push(`/#${id}`)
+    return
+  }
+  const el = document.getElementById(id)
+  if (!el) return
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <template>
@@ -19,8 +33,8 @@ import KeyLogoAnimated from '@/components/KeyLogoAnimated.vue'
           porte. Nous créons le cadre de confiance et la médiation qui rendent ce retour possible.
         </p>
         <div class="hero-actions">
-          <a class="btn-primary">Ouvrir cette porte →</a>
-          <a class="btn-ghost">Comment ça marche</a>
+          <a class="btn-primary" @click.prevent="goTo('demande')">Ouvrir cette porte →</a>
+          <a class="btn-ghost" @click.prevent="goTo('parcours')">Comment ça marche</a>
         </div>
       </div>
     </div>
