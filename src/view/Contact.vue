@@ -76,7 +76,7 @@ function submit() {
           <aside class="info-col">
             <div class="info-block">
               <span class="info-label">E-mail</span>
-              <a href="mailto:contact@aux-origines.fr" class="info-value">contact@aux-origines.fr</a>
+              <a href="mailto:contact@tracea.fr" class="info-value">contact@tracea.fr</a>
             </div>
             <div class="info-block">
               <span class="info-label">Téléphone</span>

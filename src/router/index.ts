@@ -8,7 +8,7 @@ import Rgpd from '@/view/Rgpd.vue'
 const routes = [
   {
     path: '/',
-    name: 'aux-origines',
+    name: 'tracea',
     component: LeSeuil,
   },
   {

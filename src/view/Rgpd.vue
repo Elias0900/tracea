@@ -25,11 +25,11 @@ const { dark, toggleTheme } = useTheme()
           <div class="prose-block">
             <h2>1. Responsable du traitement</h2>
             <p>
-              Aux Origines — médiation et visites accompagnées, dont le siège social est situé
+              Tracea — médiation et visites accompagnées, dont le siège social est situé
               à Paris (France), est responsable du traitement de vos données personnelles
               collectées via ce site.
             </p>
-            <p>Contact : <a href="mailto:contact@aux-origines.fr">contact@aux-origines.fr</a></p>
+            <p>Contact : <a href="mailto:contact@tracea.fr">contact@tracea.fr</a></p>
           </div>
 
           <div class="prose-block">
@@ -87,7 +87,7 @@ const { dark, toggleTheme } = useTheme()
             </ul>
             <p>
               Pour exercer ces droits, écrivez-nous à
-              <a href="mailto:contact@aux-origines.fr">contact@aux-origines.fr</a>.
+              <a href="mailto:contact@tracea.fr">contact@tracea.fr</a>.
               Vous pouvez également introduire une réclamation auprès de la CNIL
               (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).
             </p>

@@ -17,7 +17,7 @@ const { dark, toggleTheme } = useTheme()
           <p class="overline">Notre histoire</p>
           <h1 class="title">Nés d'un désir que beaucoup portent en silence.</h1>
           <p class="lead">
-            Aux Origines est né d'une observation simple : des milliers de personnes portent
+            Tracea est né d'une observation simple : des milliers de personnes portent
             en elles le souvenir d'une maison, d'un appartement, d'un lieu d'enfance
             qu'elles ne reverront peut-être jamais — non par impossibilité géographique,
             mais par impossibilité humaine. Nous avons voulu changer cela.

@@ -5,7 +5,7 @@
       <h2 class="title">Une nostalgie longtemps restée sans réponse.</h2>
       <p class="body">
         On ne sonne pas chez un inconnu en espérant entrer dans son salon. Ce désir n'avait aucun
-        cadre pour exister. Aux Origines en crée un&nbsp;: une médiation douce, un accord entre deux
+        cadre pour exister. Tracea en crée un&nbsp;: une médiation douce, un accord entre deux
         familles et un médiateur présent à chaque étape.
       </p>
       <blockquote class="quote">

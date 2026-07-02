@@ -39,8 +39,8 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
     <div class="inner">
 
       <RouterLink to="/" class="logo" @click="closeMenu">
-        <img :src="logoSrc" alt="Logo Aux Origines" class="logo-img" />
-        <span class="logo-name">Aux Origines</span>
+        <img :src="logoSrc" alt="Logo Tracea" class="logo-img" />
+        <span class="logo-name">Tracea</span>
       </RouterLink>
 
       <!-- Navigation desktop -->

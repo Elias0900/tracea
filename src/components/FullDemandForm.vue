@@ -176,7 +176,7 @@ function restart() {
       <div v-if="!submitted && step === 4">
         <h3 class="step-title">Dernier point.</h3>
         <p class="step-hint">Cela nous permet de vous répondre au mieux.</p>
-        <label class="field-label">Comment avez-vous connu Aux Origines&nbsp;? <span class="optional">(facultatif)</span></label>
+        <label class="field-label">Comment avez-vous connu Tracea&nbsp;? <span class="optional">(facultatif)</span></label>
         <input v-model="source" class="field-input" placeholder="ex. Recommandation, recherche internet…" />
         <label class="field-label">Message complémentaire <span class="optional">(facultatif)</span></label>
         <textarea
@@ -186,7 +186,7 @@ function restart() {
         />
         <label class="consent">
           <input type="checkbox" v-model="consent" />
-          <span>J'accepte d'être recontacté(e) par Aux Origines au sujet de ma demande.</span>
+          <span>J'accepte d'être recontacté(e) par Tracea au sujet de ma demande.</span>
         </label>
       </div>
 

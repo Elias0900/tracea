@@ -12,12 +12,12 @@ defineExpose({ replay })
     <!-- Le frame porte l'animation transform — l'image garde son mix-blend-mode intact -->
     <div class="logo-frame">
       <div :key="animKey" class="logo-inner">
-        <img :src="logoSrc" alt="Logo Aux Origines" class="logo-img" />
+        <img :src="logoSrc" alt="Logo Tracea" class="logo-img" />
       </div>
     </div>
 
     <p :key="'w-' + animKey" class="wordmark">
-      <slot>Aux&nbsp;Origines<em>.</em></slot>
+      <slot>Tracea<em>.</em></slot>
     </p>
   </div>
 </template>
