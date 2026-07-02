@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { sendFullDemand } from '@/composables/useEmailjs'
+import { isValidEmail, isValidName, isValidPhone, isValidPostalCode } from '@/composables/useValidation'
 
 const step = ref(0)
 const totalSteps = 5
@@ -27,11 +28,61 @@ const extraMessage = ref('')
 const consent = ref(false)
 const submitted = ref(false)
 
+const addressTouched = ref(false)
+const cityTouched = ref(false)
+const postalCodeTouched = ref(false)
+const memoryTouched = ref(false)
+const nameTouched = ref(false)
+const phoneTouched = ref(false)
+const emailTouched = ref(false)
+
+const addressValid = computed(() => address.value.trim().length > 0)
+const cityValid = computed(() => city.value.trim().length > 0)
+const postalCodeValid = computed(
+  () => postalCode.value.trim().length === 0 || isValidPostalCode(postalCode.value),
+)
+const memoryValid = computed(() => memory.value.trim().length > 0)
+const nameValid = computed(() => isValidName(name.value))
+const phoneValid = computed(() => phone.value.trim().length === 0 || isValidPhone(phone.value))
+const emailValid = computed(() => email.value.trim().length === 0 || isValidEmail(email.value))
+const contactProvided = computed(() => phone.value.trim().length > 0 || email.value.trim().length > 0)
+
+const addressError = computed(() =>
+  addressTouched.value && !addressValid.value ? "Merci d'indiquer une adresse." : '',
+)
+const cityError = computed(() =>
+  cityTouched.value && !cityValid.value ? 'Merci d\'indiquer une ville.' : '',
+)
+const postalCodeError = computed(() =>
+  postalCodeTouched.value && !postalCodeValid.value ? 'Code postal invalide (5 chiffres).' : '',
+)
+const memoryError = computed(() =>
+  memoryTouched.value && !memoryValid.value
+    ? "Merci de décrire ce que vous aimeriez revoir."
+    : '',
+)
+const nameError = computed(() =>
+  nameTouched.value && !nameValid.value ? "Merci d'indiquer votre nom." : '',
+)
+const phoneError = computed(() =>
+  phoneTouched.value && !phoneValid.value ? 'Numéro de téléphone invalide.' : '',
+)
+const emailError = computed(() =>
+  emailTouched.value && !emailValid.value ? 'Adresse e-mail invalide.' : '',
+)
+const contactError = computed(() =>
+  (phoneTouched.value || emailTouched.value) && !contactProvided.value
+    ? 'Indiquez au moins un téléphone ou un e-mail.'
+    : '',
+)
+
 const canNext = computed(() => {
   if (step.value === 0) return !!role.value
-  if (step.value === 1) return address.value.trim().length > 0 && city.value.trim().length > 0
-  if (step.value === 2) return memory.value.trim().length > 0
-  if (step.value === 3) return name.value.trim().length > 0 && (phone.value.trim().length > 0 || email.value.trim().length > 0)
+  if (step.value === 1) return addressValid.value && cityValid.value && postalCodeValid.value
+  if (step.value === 2) return memoryValid.value
+  if (step.value === 3) {
+    return nameValid.value && phoneValid.value && emailValid.value && contactProvided.value
+  }
   return true
 })
 const canSubmit = computed(() => canNext.value && consent.value)
@@ -41,6 +92,18 @@ const sending = ref(false)
 const error = ref(false)
 
 function next() {
+  if (step.value === 1) {
+    addressTouched.value = true
+    cityTouched.value = true
+    postalCodeTouched.value = true
+  }
+  if (step.value === 2) memoryTouched.value = true
+  if (step.value === 3) {
+    nameTouched.value = true
+    phoneTouched.value = true
+    emailTouched.value = true
+  }
+  if (!canNext.value) return
   if (step.value < totalSteps - 1) step.value++
 }
 function back() {
@@ -91,6 +154,13 @@ function restart() {
   consent.value = false
   submitted.value = false
   error.value = false
+  addressTouched.value = false
+  cityTouched.value = false
+  postalCodeTouched.value = false
+  memoryTouched.value = false
+  nameTouched.value = false
+  phoneTouched.value = false
+  emailTouched.value = false
 }
 </script>
 
@@ -153,16 +223,34 @@ function restart() {
         <input
           v-model="address"
           class="field-input"
+          :class="{ 'field-input--error': addressError }"
           placeholder="ex. 14 rue des Lilas"
+          @blur="addressTouched = true"
         />
+        <p v-if="addressError" class="field-error">{{ addressError }}</p>
         <div class="field-row">
           <div>
             <label class="field-label">Ville</label>
-            <input v-model="city" class="field-input" placeholder="ex. Nantes" />
+            <input
+              v-model="city"
+              class="field-input"
+              :class="{ 'field-input--error': cityError }"
+              placeholder="ex. Nantes"
+              @blur="cityTouched = true"
+            />
+            <p v-if="cityError" class="field-error">{{ cityError }}</p>
           </div>
           <div>
             <label class="field-label">Code postal <span class="optional">(facultatif)</span></label>
-            <input v-model="postalCode" class="field-input" placeholder="ex. 44000" />
+            <input
+              v-model="postalCode"
+              class="field-input"
+              :class="{ 'field-input--error': postalCodeError }"
+              placeholder="ex. 44000"
+              inputmode="numeric"
+              @blur="postalCodeTouched = true"
+            />
+            <p v-if="postalCodeError" class="field-error">{{ postalCodeError }}</p>
           </div>
         </div>
         <label class="field-label">Années <span class="optional">(facultatif)</span></label>
@@ -176,8 +264,11 @@ function restart() {
         <textarea
           v-model="memory"
           class="field-textarea"
+          :class="{ 'field-input--error': memoryError }"
           placeholder="La cuisine, la fenêtre de ma chambre, le jardin…"
+          @blur="memoryTouched = true"
         />
+        <p v-if="memoryError" class="field-error">{{ memoryError }}</p>
         <label class="field-label">Pourquoi ce retour compte pour vous <span class="optional">(facultatif)</span></label>
         <textarea
           v-model="motivation"
@@ -191,17 +282,41 @@ function restart() {
         <h3 class="step-title">Comment vous joindre&nbsp;?</h3>
         <p class="step-hint">Un médiateur vous rappelle sous 48 h, sans engagement.</p>
         <label class="field-label">Votre nom</label>
-        <input v-model="name" class="field-input" placeholder="Prénom et nom" />
+        <input
+          v-model="name"
+          class="field-input"
+          :class="{ 'field-input--error': nameError }"
+          placeholder="Prénom et nom"
+          @blur="nameTouched = true"
+        />
+        <p v-if="nameError" class="field-error">{{ nameError }}</p>
         <div class="field-row">
           <div>
             <label class="field-label">Téléphone</label>
-            <input v-model="phone" class="field-input" placeholder="06 …" />
+            <input
+              v-model="phone"
+              type="tel"
+              class="field-input"
+              :class="{ 'field-input--error': phoneError }"
+              placeholder="06 …"
+              @blur="phoneTouched = true"
+            />
+            <p v-if="phoneError" class="field-error">{{ phoneError }}</p>
           </div>
           <div>
             <label class="field-label">E-mail</label>
-            <input v-model="email" class="field-input" placeholder="vous@exemple.fr" />
+            <input
+              v-model="email"
+              type="email"
+              class="field-input"
+              :class="{ 'field-input--error': emailError }"
+              placeholder="vous@exemple.fr"
+              @blur="emailTouched = true"
+            />
+            <p v-if="emailError" class="field-error">{{ emailError }}</p>
           </div>
         </div>
+        <p v-if="contactError" class="field-error">{{ contactError }}</p>
         <label class="field-label">Disponibilités <span class="optional">(facultatif)</span></label>
         <input v-model="availability" class="field-input" placeholder="ex. Semaine, après 18h" />
       </div>
@@ -261,7 +376,7 @@ function restart() {
         <button
           v-if="step < totalSteps - 1"
           class="nav-next"
-          :style="{ opacity: canNext ? '1' : '0.38', pointerEvents: canNext ? 'auto' : 'none' }"
+          :style="{ opacity: canNext ? '1' : '0.55' }"
           @click="next"
         >
           Continuer →

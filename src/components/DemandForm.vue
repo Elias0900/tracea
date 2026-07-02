@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { sendQuickDemand } from '@/composables/useEmailjs'
+import { isValidEmail, isValidName, isValidPhone } from '@/composables/useValidation'
 
 const name = ref('')
 const contact = ref('')
@@ -9,9 +10,24 @@ const submitted = ref(false)
 const sending = ref(false)
 const error = ref(false)
 
-const canSubmit = computed(() => name.value.trim().length > 0 && contact.value.trim().length > 0)
+const nameTouched = ref(false)
+const contactTouched = ref(false)
+
+const nameValid = computed(() => isValidName(name.value))
+const contactValid = computed(() => isValidEmail(contact.value) || isValidPhone(contact.value))
+
+const nameError = computed(() => (nameTouched.value && !nameValid.value ? 'Merci d\'indiquer votre nom.' : ''))
+const contactError = computed(() =>
+  contactTouched.value && !contactValid.value
+    ? 'Entrez un numéro de téléphone ou un e-mail valide.'
+    : '',
+)
+
+const canSubmit = computed(() => nameValid.value && contactValid.value)
 
 async function submit() {
+  nameTouched.value = true
+  contactTouched.value = true
   if (!canSubmit.value || sending.value) return
   sending.value = true
   error.value = false
@@ -32,6 +48,8 @@ function restart() {
   name.value = ''
   contact.value = ''
   message.value = ''
+  nameTouched.value = false
+  contactTouched.value = false
   submitted.value = false
   error.value = false
 }
@@ -49,10 +67,24 @@ function restart() {
       <div class="form-card">
         <div v-if="!submitted" class="form-body">
           <label class="field-label">Votre nom</label>
-          <input v-model="name" class="field-input" placeholder="Prénom et nom" />
+          <input
+            v-model="name"
+            class="field-input"
+            :class="{ 'field-input--error': nameError }"
+            placeholder="Prénom et nom"
+            @blur="nameTouched = true"
+          />
+          <p v-if="nameError" class="field-error">{{ nameError }}</p>
 
           <label class="field-label">Téléphone ou e-mail</label>
-          <input v-model="contact" class="field-input" placeholder="06 … ou vous@exemple.fr" />
+          <input
+            v-model="contact"
+            class="field-input"
+            :class="{ 'field-input--error': contactError }"
+            placeholder="06 … ou vous@exemple.fr"
+            @blur="contactTouched = true"
+          />
+          <p v-if="contactError" class="field-error">{{ contactError }}</p>
 
           <label class="field-label">Message <span class="optional">(facultatif)</span></label>
           <textarea
@@ -187,6 +219,16 @@ function restart() {
 }
 .field-input:focus {
   border-color: var(--accent);
+}
+.field-input--error {
+  border-color: #c0392b;
+}
+.field-error {
+  margin: 6px 0 0;
+  font:
+    400 12.5px/1.4 'Work Sans',
+    sans-serif;
+  color: #c0392b;
 }
 .field-textarea {
   width: 100%;
