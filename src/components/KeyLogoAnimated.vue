@@ -17,7 +17,7 @@ defineExpose({ replay })
     </div>
 
     <p :key="'w-' + animKey" class="wordmark">
-      <slot>Tracea<em>.</em></slot>
+      <slot>TRACEA</slot>
     </p>
     <p :key="'t-' + animKey" class="tagline">Revivre. Ressentir. Transmettre.</p>
   </div>
