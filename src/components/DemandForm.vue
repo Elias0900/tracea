@@ -4,37 +4,45 @@ import { sendQuickDemand } from '@/composables/useEmailjs'
 import { isValidEmail, isValidName, isValidPhone } from '@/composables/useValidation'
 
 const name = ref('')
-const contact = ref('')
+const email = ref('')
+const phone = ref('')
 const message = ref('')
 const submitted = ref(false)
 const sending = ref(false)
 const error = ref(false)
 
 const nameTouched = ref(false)
-const contactTouched = ref(false)
+const emailTouched = ref(false)
+const phoneTouched = ref(false)
 
 const nameValid = computed(() => isValidName(name.value))
-const contactValid = computed(() => isValidEmail(contact.value) || isValidPhone(contact.value))
+const emailValid = computed(() => isValidEmail(email.value))
+const phoneValid = computed(() => phone.value.trim().length === 0 || isValidPhone(phone.value))
 
-const nameError = computed(() => (nameTouched.value && !nameValid.value ? 'Merci d\'indiquer votre nom.' : ''))
-const contactError = computed(() =>
-  contactTouched.value && !contactValid.value
-    ? 'Entrez un numéro de téléphone ou un e-mail valide.'
-    : '',
+const nameError = computed(() =>
+  nameTouched.value && !nameValid.value ? "Merci d'indiquer votre nom." : '',
+)
+const emailError = computed(() =>
+  emailTouched.value && !emailValid.value ? 'Entrez une adresse e-mail valide.' : '',
+)
+const phoneError = computed(() =>
+  phoneTouched.value && !phoneValid.value ? 'Numéro de téléphone invalide.' : '',
 )
 
-const canSubmit = computed(() => nameValid.value && contactValid.value)
+const canSubmit = computed(() => nameValid.value && emailValid.value && phoneValid.value)
 
 async function submit() {
   nameTouched.value = true
-  contactTouched.value = true
+  emailTouched.value = true
+  phoneTouched.value = true
   if (!canSubmit.value || sending.value) return
   sending.value = true
   error.value = false
   try {
     await sendQuickDemand({
       from_name: name.value,
-      from_contact: contact.value,
+      email: email.value,
+      phone: phone.value,
       message: message.value,
     })
     submitted.value = true
@@ -46,10 +54,12 @@ async function submit() {
 }
 function restart() {
   name.value = ''
-  contact.value = ''
+  email.value = ''
+  phone.value = ''
   message.value = ''
   nameTouched.value = false
-  contactTouched.value = false
+  emailTouched.value = false
+  phoneTouched.value = false
   submitted.value = false
   error.value = false
 }
@@ -76,15 +86,27 @@ function restart() {
           />
           <p v-if="nameError" class="field-error">{{ nameError }}</p>
 
-          <label class="field-label">Téléphone ou e-mail</label>
+          <label class="field-label">E-mail</label>
           <input
-            v-model="contact"
+            v-model="email"
+            type="email"
             class="field-input"
-            :class="{ 'field-input--error': contactError }"
-            placeholder="06 … ou vous@exemple.fr"
-            @blur="contactTouched = true"
+            :class="{ 'field-input--error': emailError }"
+            placeholder="vous@exemple.fr"
+            @blur="emailTouched = true"
           />
-          <p v-if="contactError" class="field-error">{{ contactError }}</p>
+          <p v-if="emailError" class="field-error">{{ emailError }}</p>
+
+          <label class="field-label">Téléphone <span class="optional">(facultatif)</span></label>
+          <input
+            v-model="phone"
+            type="tel"
+            class="field-input"
+            :class="{ 'field-input--error': phoneError }"
+            placeholder="06 …"
+            @blur="phoneTouched = true"
+          />
+          <p v-if="phoneError" class="field-error">{{ phoneError }}</p>
 
           <label class="field-label">Message <span class="optional">(facultatif)</span></label>
           <textarea
@@ -99,7 +121,10 @@ function restart() {
 
           <button
             class="nav-next"
-            :style="{ opacity: canSubmit && !sending ? '1' : '0.55', pointerEvents: sending ? 'none' : 'auto' }"
+            :style="{
+              opacity: canSubmit && !sending ? '1' : '0.55',
+              pointerEvents: sending ? 'none' : 'auto',
+            }"
             @click="submit"
           >
             {{ sending ? 'Envoi en cours…' : 'Être recontacté' }}
@@ -312,8 +337,14 @@ function restart() {
 }
 
 @media (max-width: 768px) {
-  .demande { padding: 64px 16px; }
-  .title { font-size: 26px; }
-  .form-body { padding: 24px 18px; }
+  .demande {
+    padding: 64px 16px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .form-body {
+    padding: 24px 18px;
+  }
 }
 </style>
