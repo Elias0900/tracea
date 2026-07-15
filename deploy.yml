@@ -1,0 +1,55 @@
+name: Déploiement Netlify
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Où déployer ?"
+        required: true
+        type: choice
+        options:
+          - REC
+          - PROD
+        default: REC
+
+  push:
+    branches:
+      - staging   # push sur staging -> déploiement REC automatique
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'REC' }}
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Build du projet
+        run: npm run build
+
+      - name: Installer Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Déployer en PROD
+        if: ${{ github.event.inputs.environment == 'PROD' }}
+        run: netlify deploy --build --prod --dir=dist
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Déployer en REC
+        if: ${{ github.event.inputs.environment != 'PROD' }}
+        run: netlify deploy --build --alias=rec --dir=dist
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
