@@ -58,6 +58,10 @@ const steps = [
           </div>
         </div>
       </div>
+
+      <div class="cta-wrap">
+        <RouterLink to="/entamer-les-demarches" class="cta">Entamer les démarches →</RouterLink>
+      </div>
     </div>
   </section>
 </template>
@@ -173,6 +177,32 @@ const steps = [
   color: var(--text-secondary);
 }
 
+.cta-wrap {
+  margin-top: 56px;
+  text-align: center;
+}
+.cta {
+  display: inline-block;
+  padding: 15px 28px;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  color: #fff;
+  font:
+    500 15px/1 'Work Sans',
+    sans-serif;
+  border-radius: 3px;
+  text-decoration: none;
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+.cta:hover {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 @media (max-width: 768px) {
   .parcours { padding: 64px 20px; }
   .title { font-size: 28px; }
@@ -181,6 +211,8 @@ const steps = [
     gap: 24px;
     margin-top: 36px;
   }
+  .cta-wrap { margin-top: 40px; }
+  .cta { width: 100%; text-align: center; }
 }
 
 @media (max-width: 480px) {
