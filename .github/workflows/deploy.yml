@@ -40,8 +40,14 @@ jobs:
       - name: Installer Netlify CLI
         run: npm install -g netlify-cli
 
+      - name: Vérifier que PROD n'est déployé que depuis main
+        if: ${{ github.event.inputs.environment == 'PROD' && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "Le déploiement en PROD n'est autorisé que depuis la branche main."
+          exit 1
+
       - name: Déployer en PROD
-        if: ${{ github.event.inputs.environment == 'PROD' }}
+        if: ${{ github.event.inputs.environment == 'PROD' && github.ref == 'refs/heads/main' }}
         run: netlify deploy --build --prod --dir=dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
