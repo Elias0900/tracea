@@ -48,7 +48,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
         <a class="nav-link" @click.prevent="goTo('principe')">Le principe</a>
         <a class="nav-link" @click.prevent="goTo('parcours')">Le parcours</a>
         <a class="nav-link" @click.prevent="goTo('pourqui')">Pour qui</a>
-        <RouterLink to="/qui-sommes-nous" class="nav-link">Qui sommes-nous</RouterLink>
+        <RouterLink to="/qui-sommes-nous" class="nav-link">C'est la street</RouterLink>
       </nav>
 
       <!-- Actions desktop -->
