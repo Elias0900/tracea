@@ -10,11 +10,16 @@ const name    = ref('')
 const email   = ref('')
 const message = ref('')
 const sent    = ref(false)
+const shake   = ref(false)
 
 function submit() {
   if (name.value.trim() && email.value.trim() && message.value.trim()) {
     sent.value = true
+    return
   }
+  shake.value = false
+  requestAnimationFrame(() => { shake.value = true })
+  setTimeout(() => { shake.value = false }, 500)
 }
 </script>
 
@@ -23,11 +28,12 @@ function submit() {
     <AppHeader :dark="dark" @toggle-theme="toggleTheme" />
 
     <main>
-      <section class="page-hero">
+      <section class="page-hero grain">
+        <div class="hero-glow" aria-hidden="true" />
         <div class="page-hero-inner">
-          <p class="overline">Contact</p>
-          <h1 class="title">Écrivez-nous.</h1>
-          <p class="lead">Nous répondons dans les 24 heures.</p>
+          <p class="overline" v-reveal><span class="overline-line" />Contact</p>
+          <h1 class="title" v-reveal="{ delay: 80 }">Écrivez-nous.</h1>
+          <p class="lead" v-reveal="{ delay: 180 }">Nous répondons dans les 24 heures.</p>
         </div>
       </section>
 
@@ -35,8 +41,8 @@ function submit() {
         <div class="layout">
 
           <!-- Form -->
-          <div class="form-col">
-            <div v-if="!sent" class="form-card">
+          <div class="form-col" v-reveal>
+            <div v-if="!sent" class="form-card" :class="{ 'form-card--shake': shake }">
               <form class="form" @submit.prevent="submit">
                 <div class="field">
                   <label class="label" for="c-name">Votre nom</label>
@@ -73,7 +79,7 @@ function submit() {
           </div>
 
           <!-- Info -->
-          <aside class="info-col">
+          <aside class="info-col" v-reveal="{ delay: 140 }">
             <div class="info-block">
               <span class="info-label">E-mail</span>
               <a href="mailto:contact@tracea.fr" class="info-value">contact@tracea.fr</a>
@@ -102,22 +108,39 @@ function submit() {
 
 <style scoped>
 .page-hero {
-  padding: 96px 32px 72px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding: 104px 32px 80px;
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -140px; left: 30%;
+  width: 520px; height: 340px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 .page-hero-inner {
+  position: relative;
+  z-index: 2;
   max-width: 560px;
   margin: 0 auto;
 }
 .overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font: 500 12px/1 'Work Sans', sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 20px;
 }
+.overline-line { width: 26px; height: 1px; background: var(--accent); opacity: 0.6; }
 .title {
-  font: 500 52px/1.08 'Spectral', serif;
+  font: 500 clamp(28px, 4.8vw, 52px)/1.08 'Spectral', serif;
   color: var(--text-primary);
   letter-spacing: -0.01em;
   margin: 0 0 16px;
@@ -143,8 +166,17 @@ function submit() {
 .form-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 40px;
+  box-shadow: var(--shadow-md);
+}
+.form-card--shake { animation: shakeForm 0.5s var(--ease-out); }
+@keyframes shakeForm {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
 }
 .form {
   display: flex;
@@ -175,19 +207,21 @@ function submit() {
 .input:focus { border-color: var(--accent); }
 .textarea { line-height: 1.6; }
 .btn-submit {
-  padding: 14px 24px;
-  background: var(--accent);
-  border: 1.5px solid var(--accent);
+  padding: 15px 24px;
+  background: var(--accent-grad);
+  border: 1.5px solid transparent;
   color: #fff;
   font: 500 14px/1 'Work Sans', sans-serif;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background 0.4s, color 0.4s;
+  box-shadow: 0 8px 22px var(--accent-shadow);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
 .btn-submit:hover:not(:disabled) {
-  background: transparent;
-  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px var(--accent-shadow);
 }
+.btn-submit:active:not(:disabled) { transform: translateY(0) scale(0.97); }
 .btn-submit:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -268,14 +302,12 @@ a.info-value:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
   .page-hero { padding: 60px 20px 48px; }
-  .title { font-size: 36px; }
   .section { padding: 48px 20px 64px; }
   .form-card { padding: 28px 20px; }
 }
 
 @media (max-width: 480px) {
   .page-hero { padding: 48px 16px 36px; }
-  .title { font-size: 28px; }
   .section { padding: 36px 16px 48px; }
 }
 </style>

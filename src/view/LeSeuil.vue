@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection.vue'
 import PrincipeSection from '@/components/PrincipeSection.vue'
 import ParcoursSection from '@/components/ParcoursSection.vue'
 import PourQuiSection from '@/components/PourQuiSection.vue'
+import FaqSection from '@/components/FaqSection.vue'
 import DemandForm from '@/components/DemandForm.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import { useTheme } from '@/composables/useTheme'
@@ -19,6 +20,7 @@ const { dark, toggleTheme } = useTheme()
     <PrincipeSection />
     <ParcoursSection />
     <PourQuiSection />
+    <FaqSection />
     <DemandForm />
     <AppFooter />
   </div>

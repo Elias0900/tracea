@@ -37,24 +37,24 @@ defineExpose({ replay })
 .logo-frame {
   width: clamp(150px, 20vw, 240px);
   height: clamp(150px, 20vw, 240px);
-  animation: frameFloat 4s ease-in-out infinite;
+  animation: frameFloat 7s ease-in-out infinite;
 }
 
 /* ── Inner : entrée scale (ne touche pas transform du parent) ── */
 .logo-inner {
   width: 100%;
   height: 100%;
-  animation: frameIn 1.1s cubic-bezier(0.34, 1.42, 0.64, 1) both;
+  animation: frameIn 1.2s var(--ease-spring, ease-out) both;
 }
 
 @keyframes frameIn {
-  from { transform: scale(0.78) translateY(24px); opacity: 0; }
-  to   { transform: scale(1)    translateY(0);    opacity: 1; }
+  from { transform: scale(0.9) translateY(14px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
 }
 
 @keyframes frameFloat {
-  0%,  100% { transform: translateY(0);     }
-  50%        { transform: translateY(-13px); }
+  0%,  100% { transform: translateY(0);    }
+  50%        { transform: translateY(-9px); }
 }
 
 /* ── Image : blend mode uniquement ── */

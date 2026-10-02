@@ -630,16 +630,19 @@ function restart() {
 }
 .nav-next {
   padding: 13px 26px;
-  background: var(--accent);
+  background: var(--accent-grad);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font:
     500 15px/1 'Work Sans',
     sans-serif;
   cursor: pointer;
-  transition: opacity 0.2s;
+  box-shadow: 0 10px 26px var(--accent-shadow);
+  transition: opacity 0.2s, transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
+.nav-next:hover { transform: translateY(-2px); box-shadow: 0 14px 34px var(--accent-shadow); }
+.nav-next:active { transform: translateY(0) scale(0.97); }
 .submitted {
   text-align: center;
   padding: 12px 0;

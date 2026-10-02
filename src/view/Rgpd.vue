@@ -11,16 +11,17 @@ const { dark, toggleTheme } = useTheme()
     <AppHeader :dark="dark" @toggle-theme="toggleTheme" />
 
     <main>
-      <section class="page-hero">
+      <section class="page-hero grain">
+        <div class="hero-glow" aria-hidden="true" />
         <div class="page-hero-inner">
-          <p class="overline">Légal</p>
-          <h1 class="title">Protection des données personnelles</h1>
-          <p class="lead">Dernière mise à jour : janvier 2025</p>
+          <p class="overline" v-reveal><span class="overline-line" />Légal</p>
+          <h1 class="title" v-reveal="{ delay: 80 }">Protection des données personnelles</h1>
+          <p class="lead" v-reveal="{ delay: 160 }">Dernière mise à jour : janvier 2025</p>
         </div>
       </section>
 
       <section class="section">
-        <div class="prose-inner">
+        <div class="prose-inner" v-reveal>
 
           <div class="prose-block">
             <h2>1. Responsable du traitement</h2>
@@ -112,22 +113,39 @@ const { dark, toggleTheme } = useTheme()
 
 <style scoped>
 .page-hero {
-  padding: 80px 32px 56px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding: 96px 32px 64px;
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -140px; left: 40%;
+  width: 480px; height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 .page-hero-inner {
+  position: relative;
+  z-index: 2;
   max-width: 720px;
   margin: 0 auto;
 }
 .overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font: 500 12px/1 'Work Sans', sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 20px;
 }
+.overline-line { width: 26px; height: 1px; background: var(--accent); opacity: 0.6; }
 .title {
-  font: 400 38px/1.15 'Spectral', serif;
+  font: 400 clamp(24px, 3.4vw, 38px)/1.15 'Spectral', serif;
   color: var(--text-primary);
   margin: 0 0 14px;
 }
@@ -194,13 +212,11 @@ const { dark, toggleTheme } = useTheme()
 
 @media (max-width: 768px) {
   .page-hero { padding: 56px 20px 40px; }
-  .title { font-size: 28px; }
   .section { padding: 48px 20px 64px; }
 }
 
 @media (max-width: 480px) {
   .page-hero { padding: 40px 16px 28px; }
-  .title { font-size: 24px; }
   .section { padding: 36px 16px 48px; }
 }
 </style>

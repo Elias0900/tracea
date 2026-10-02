@@ -1,15 +1,19 @@
 <template>
-  <section id="principe" class="principe">
+  <section id="principe" class="principe grain">
+    <div class="glow" aria-hidden="true" />
     <div class="inner">
-      <p class="overline">Le principe</p>
-      <h2 class="title">Une nostalgie longtemps restée sans réponse.</h2>
-      <p class="body">
+      <p class="overline" v-reveal><span class="overline-line" />Le principe</p>
+      <h2 class="title" v-reveal="{ delay: 80 }">
+        Une nostalgie longtemps restée sans réponse.
+      </h2>
+      <p class="body" v-reveal="{ delay: 180 }">
         On ne sonne pas chez un inconnu en espérant entrer dans son salon. Ce désir n'avait aucun
-        cadre pour exister. Tracea en créer un&nbsp;: une médiation douce, un accord entre deux
+        cadre pour exister. Tracea en crée un&nbsp;: une médiation douce, un accord entre deux
         familles et un médiateur présent à chaque étape.
       </p>
-      <blockquote class="quote">
-        « Ce n'est pas seulement une maison. C'est une part de soi qu'on retrouve. »
+      <blockquote class="quote" v-reveal="{ delay: 280 }">
+        <span class="quote-mark" aria-hidden="true">“</span>
+        Ce n'est pas seulement une maison. C'est une part de soi qu'on retrouve.
       </blockquote>
     </div>
   </section>
@@ -17,56 +21,75 @@
 
 <style scoped>
 .principe {
-  padding: 96px 32px;
-  border-top: 1px solid var(--border);
+  position: relative;
+  padding: 112px 32px;
+  border-top: 1px solid var(--hairline);
   background: var(--section-bg);
+  overflow: hidden;
+}
+.glow {
+  position: absolute;
+  top: -120px; left: 50%;
+  width: 520px; height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 .inner {
+  position: relative;
+  z-index: 2;
   max-width: 760px;
   margin: 0 auto;
   text-align: center;
 }
 .overline {
-  font:
-    500 11px/1 'Work Sans',
-    sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font: 500 11px/1 'Work Sans', sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0;
 }
+.overline-line {
+  width: 26px; height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
 .title {
-  margin: 20px 0 0;
-  font:
-    500 38px/1.18 'Spectral',
-    serif;
+  margin: 22px 0 0;
+  font: 500 clamp(26px, 4vw, 40px)/1.16 'Spectral', serif;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 .body {
-  margin: 26px 0 0;
-  font:
-    300 17.5px/1.7 'Work Sans',
-    sans-serif;
+  margin: 26px auto 0;
+  max-width: 620px;
+  font: 300 17.5px/1.72 'Work Sans', sans-serif;
   color: var(--text-secondary);
 }
 .quote {
-  margin: 48px auto 0;
-  max-width: 560px;
-  font:
-    italic 400 26px/1.55 'Spectral',
-    serif;
+  position: relative;
+  margin: 52px auto 0;
+  max-width: 580px;
+  padding-top: 28px;
+  font: italic 400 clamp(20px, 3vw, 27px)/1.5 'Spectral', serif;
   color: var(--quote-color);
 }
-@media (max-width: 768px) {
-  .principe { padding: 64px 20px; }
-  .title { font-size: 28px; }
-  .body { font-size: 15.5px; }
-  .quote { font-size: 21px; margin-top: 32px; }
+.quote-mark {
+  display: block;
+  font: 400 64px/0.4 'Spectral', serif;
+  color: var(--accent);
+  opacity: 0.35;
+  margin-bottom: 14px;
 }
-
+@media (max-width: 768px) {
+  .principe { padding: 72px 20px; }
+  .body { font-size: 15.5px; }
+}
 @media (max-width: 480px) {
-  .principe { padding: 48px 16px; }
-  .title { font-size: 24px; }
-  .quote { font-size: 18px; }
+  .principe { padding: 56px 16px; }
 }
 </style>

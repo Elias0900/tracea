@@ -12,11 +12,12 @@ const { dark, toggleTheme } = useTheme()
 
     <main>
       <!-- Hero -->
-      <section class="page-hero">
+      <section class="page-hero grain">
+        <div class="hero-glow" aria-hidden="true" />
         <div class="page-hero-inner">
-          <p class="overline">Notre histoire</p>
-          <h1 class="title">Nés d'un désir que beaucoup portent en silence.</h1>
-          <p class="lead">
+          <p class="overline" v-reveal><span class="overline-line" />Notre histoire</p>
+          <h1 class="title" v-reveal="{ delay: 80 }">Nés d'un désir que beaucoup portent en silence.</h1>
+          <p class="lead" v-reveal="{ delay: 180 }">
             Tracea est né d'une observation simple : des millions de personnes portent
             en elles le souvenir d'une maison, d'un appartement, d'un lieu d'enfance
             qu'elles ne reverront peut-être jamais — non par impossibilité géographique,
@@ -29,7 +30,7 @@ const { dark, toggleTheme } = useTheme()
       <section class="section-alt">
         <div class="content-inner">
           <div class="two-col">
-            <div>
+            <div v-reveal>
               <h2 class="section-title">Notre mission</h2>
               <p class="body-text">
                 Nous créons le cadre de confiance qui rend possible une visite que personne
@@ -41,7 +42,7 @@ const { dark, toggleTheme } = useTheme()
                 prise de contact jusqu'au suivi après la visite.
               </p>
             </div>
-            <div>
+            <div v-reveal="{ delay: 140 }">
               <h2 class="section-title">Nos valeurs</h2>
               <ul class="values-list">
                 <li class="value-item">
@@ -73,17 +74,17 @@ const { dark, toggleTheme } = useTheme()
             certains liens méritent d'être préservés.
           </p>
           <div class="team-grid">
-            <div class="team-card">
+            <div class="team-card" v-reveal>
               <div class="team-avatar" />
               <span class="team-name">Nicolas P.</span>
               <span class="team-role">Co-Fondateur</span>
             </div>
-            <div class="team-card">
+            <div class="team-card" v-reveal="{ delay: 120 }">
               <div class="team-avatar" />
               <span class="team-name">Laurine L.</span>
               <span class="team-role">Co-Fondatrice</span>
             </div>
-            <div class="team-card">
+            <div class="team-card" v-reveal="{ delay: 240 }">
               <div class="team-avatar" />
               <span class="team-name">Elias G.</span>
               <span class="team-role">Co-Fondateur</span>
@@ -99,23 +100,40 @@ const { dark, toggleTheme } = useTheme()
 
 <style scoped>
 .page-hero {
-  padding: 96px 32px 80px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding: 104px 32px 80px;
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -140px; left: 50%;
+  width: 560px; height: 360px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 .page-hero-inner {
+  position: relative;
+  z-index: 2;
   max-width: 760px;
   margin: 0 auto;
   text-align: center;
 }
 .overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font: 500 12px/1 'Work Sans', sans-serif;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 20px;
 }
+.overline-line { width: 26px; height: 1px; background: var(--accent); opacity: 0.6; }
 .title {
-  font: 500 48px/1.1 'Spectral', serif;
+  font: 500 clamp(28px, 4.4vw, 48px)/1.1 'Spectral', serif;
   color: var(--text-primary);
   letter-spacing: -0.01em;
   margin: 0 0 28px;
@@ -192,17 +210,27 @@ const { dark, toggleTheme } = useTheme()
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 32px 24px;
+  padding: 36px 24px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--radius);
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.45s;
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+  box-shadow: var(--shadow-md);
 }
 .team-avatar {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  background: var(--border);
+  background: var(--accent-grad);
+  opacity: 0.85;
+  box-shadow: inset 0 2px 8px oklch(1 0 0 / 0.2);
+  transition: transform 0.45s var(--ease-spring);
 }
+.team-card:hover .team-avatar { transform: scale(1.06); }
 .team-name {
   font: 500 16px/1 'Spectral', serif;
   color: var(--text-primary);
@@ -219,12 +247,10 @@ const { dark, toggleTheme } = useTheme()
 
 @media (max-width: 768px) {
   .page-hero { padding: 60px 20px 48px; }
-  .title { font-size: 34px; }
   .section, .section-alt { padding: 56px 20px; }
 }
 
 @media (max-width: 560px) {
-  .title { font-size: 28px; }
   .team-grid { grid-template-columns: 1fr; }
   .page-hero { padding: 48px 16px 36px; }
   .section, .section-alt { padding: 40px 16px; }

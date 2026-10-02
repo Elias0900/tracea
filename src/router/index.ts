@@ -4,6 +4,7 @@ import QuiSommesNous from '@/view/QuiSommesNous.vue'
 import EntamerDemarches from '@/view/EntamerDemarches.vue'
 import Contact from '@/view/Contact.vue'
 import Rgpd from '@/view/Rgpd.vue'
+import Tarifs from '@/view/Tarifs.vue'
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     path: '/qui-sommes-nous',
     name: 'qui-sommes-nous',
     component: QuiSommesNous,
+  },
+  {
+    path: '/tarifs',
+    name: 'tarifs',
+    component: Tarifs,
   },
   {
     path: '/entamer-les-demarches',

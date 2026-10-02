@@ -6,33 +6,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Work+Sans:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap');
 
 :root {
-  --accent: oklch(0.48 0.09 76);
-  --bg: oklch(0.82 0.016 82);
-  --section-bg: oklch(0.77 0.018 80);
-  --card-bg: oklch(0.85 0.014 82);
-  --border: oklch(0.68 0.020 78);
-  --text-primary: oklch(0.18 0.022 70);
-  --text-secondary: oklch(0.32 0.018 72);
-  --text-tertiary: oklch(0.46 0.012 74);
-  --logo-stroke: oklch(0.30 0.022 72);
-  --logo-text: oklch(0.18 0.022 70);
-  --quote-color: oklch(0.42 0.075 74);
-  --header-bg: oklch(0.82 0.016 82 / .93);
-  --toggle-bg: oklch(0.77 0.018 80);
-  --input-bg: oklch(0.85 0.014 82);
-  --footer-bg: oklch(0.20 0.018 72);
-  --footer-text: oklch(0.92 0.006 82);
-  --footer-sub: oklch(0.60 0.010 78);
-  --footer-logo: oklch(0.80 0.010 80);
-  --accent-shadow: oklch(0.48 0.09 76 / .20);
-  --accent-text: oklch(0.40 0.08 74);
-  --form-shadow: 0 18px 50px oklch(0.48 0.06 76 / .15);
-  --arch-bg: oklch(0.75 0.018 80);
-  --sel-bg: oklch(0.72 0.020 78);
+  --accent: oklch(0.50 0.14 58);
+  --bg: oklch(0.83 0.020 80);
+  --section-bg: oklch(0.78 0.022 78);
+  --card-bg: oklch(0.86 0.018 80);
+  --border: oklch(0.67 0.026 76);
+  --text-primary: oklch(0.16 0.026 60);
+  --text-secondary: oklch(0.30 0.022 64);
+  --text-tertiary: oklch(0.44 0.016 66);
+  --logo-stroke: oklch(0.28 0.026 60);
+  --logo-text: oklch(0.16 0.026 60);
+  --quote-color: oklch(0.42 0.11 56);
+  --header-bg: oklch(0.83 0.020 80 / .93);
+  --toggle-bg: oklch(0.78 0.022 78);
+  --input-bg: oklch(0.86 0.018 80);
+  --footer-bg: oklch(0.17 0.022 58);
+  --footer-text: oklch(0.93 0.008 82);
+  --footer-sub: oklch(0.62 0.014 74);
+  --footer-logo: oklch(0.82 0.012 78);
+  --accent-shadow: oklch(0.50 0.14 58 / .22);
+  --accent-text: oklch(0.40 0.12 56);
+  --form-shadow: 0 18px 50px oklch(0.44 0.10 56 / .16);
+  --arch-bg: oklch(0.76 0.022 78);
+  --sel-bg: oklch(0.73 0.024 76);
   --logo-shadow-alpha: 0.35;
   --logo-halo-alpha: 1;
   --logo-blend: multiply;
   --logo-filter: none;
+
+  /* ── Design system étendu (thème "Revoir") ──────────── */
+  --accent-2: oklch(0.44 0.15 34);           /* terracotta profond pour dégradés */
+  --accent-grad: linear-gradient(135deg, oklch(0.56 0.13 64), oklch(0.44 0.15 34));
+  --glow: oklch(0.65 0.13 60 / 0.30);         /* halo doré diffus */
+  --mesh-1: oklch(0.74 0.11 66 / 0.55);
+  --mesh-2: oklch(0.62 0.14 40 / 0.42);
+  --mesh-3: oklch(0.82 0.07 90 / 0.40);
+  --grain-opacity: 0.045;
+  --hairline: oklch(0.67 0.026 76 / 0.6);
+
+  --radius-sm: 6px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 2px 10px oklch(0.30 0.03 72 / 0.06);
+  --shadow-md: 0 14px 40px oklch(0.30 0.04 72 / 0.10);
+  --shadow-lg: 0 30px 80px oklch(0.30 0.05 72 / 0.16);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.33, 1.1, 0.5, 1);
+
+  --maxw: 1180px;
+
+  /* ── Échelle logo (cohérente header / footer / hero) ─── */
+  --logo-size-header: 52px;
+  --logo-size-header-scrolled: 44px;
+  --logo-size-footer: 72px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -80,4 +106,65 @@ html { scroll-behavior: smooth; }
   12%  { opacity: 1; }
   75%  { opacity: .4; }
   100% { opacity: 0; transform: translateY(-80px) scale(.18); }
+}
+
+/* ── Scroll reveal ──────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.9s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+/* ── Halo / dégradé animé (fonds de section) ────────── */
+@keyframes meshDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2%, -1.5%, 0) scale(1.05); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes shine {
+  0%   { transform: translateX(-120%); }
+  60%  { transform: translateX(220%); }
+  100% { transform: translateX(220%); }
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+/* Grain de film subtil, réutilisable via .grain */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lien "focus visible" cohérent et accessible */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
 }
